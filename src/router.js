@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 import InitPage from "@/views/InitPage.vue";
-import FailurePage from "@/views/FailurePage.vue";
 
 export default createRouter({
     history: createWebHistory(),
@@ -35,14 +34,13 @@ export default createRouter({
             path: "/all_timers"
         },
         {
-            path: "/:timer_id/continue"
+            path: "/continue"
         },
         {
             path: "/success"
         },
         {
-            path: "/fail",
-            component: FailurePage
+            path: "/fail"
         },
         {
             path: '/:pathMatch(.*)*'
