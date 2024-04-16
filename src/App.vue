@@ -1,14 +1,11 @@
 <template>
-  <InitPage/>
+  <router-view/>
 </template>
 
 <script>
-import InitPage from "@/views/InitPage.vue";
-
 export default {
   name: 'App',
   components: {
-    InitPage
   }
 }
 </script>
