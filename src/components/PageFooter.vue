@@ -13,7 +13,8 @@ footer {
   bottom: 0;
   width: 100%;
   display: flex;
-  flex-flow: row wrap;
+  justify-content: center; /* Wyśrodkowanie zawartości w poziomie */
+  align-items: center; /* Wyśrodkowanie zawartości w pionie */
   padding: 5px;
   color: #2f2f2f;
   background-color: #7DA193;
@@ -22,6 +23,6 @@ footer {
 
 footer > * {
   flex:  1 100%;
+  text-align: center; /* Wyśrodkowanie tekstu wewnątrz stopki */
 }
-
 </style>

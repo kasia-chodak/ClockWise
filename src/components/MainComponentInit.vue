@@ -1,30 +1,38 @@
 <template>
-  <body>
   <div class="main_body">
-    <div class="rectangle">
       <div class="text_and_button">
         <div>
-          <p class="intro_header"><b>Welcome to ClockWise: where Goals meet Time!</b></p>
-          <p class="intro_text">Are you ready to embark on a journey of achievement and productivity? Look no further than ClockWise – your ultimate companion in setting, pursuing, and conquering your goals while keeping track of time. ClockWise is more than just a website: it's your personal toolkit for success. Whether you're aiming to master a new skill, complete a project, or cultivate healthier habits, ClockWise empowers you to define your objectives and stay focused every step of the way. With Clockwise, you can: set your goals, track your progress, manage your time, celebrate your achievements!
-            <br><br>
-            Join us on the journey to success. Start today!
-          </p>
+          <p class="intro_header"><b>Congrats! You have achieved your first goal.</b><br><b>Here is your reward:</b></p>
+
         </div>
-      </div>
-    </div>
-    <a href="/setaccount">
-      <button>Let's go!</button>
-    </a>
+        <div class="cat-images">
+          <!-- Wyświetlanie zdjęć kotów -->
+          <img v-for="(cat, index) in catImages" :key="index" :src="cat.url" alt="Kot" width="629" height="485">
+        </div>
+      </div>  
   </div>
-  </body>
+    <a href="/setaccount">
+      <button>Make a new clock</button>
+    </a>
 </template>
 
 <script setup>
+import { ref, onMounted } from 'vue';
 
+const catImages = ref([]);
+
+onMounted(async () => {
+  try {
+    const response = await fetch('https://api.thecatapi.com/v1/images/search?size=med&mime_types=jpg&format=json&has_breeds=true&order=RANDOM&page=0&limit=1');
+    const data = await response.json();
+    catImages.value = data;
+  } catch (error) {
+    console.error('Błąd podczas pobierania zdjęć kotów:', error);
+  }
+});
 </script>
 
 <style scoped>
-
 body {
   background-image: url("../assets/clocks.jpg");
   background-repeat: repeat;
@@ -38,19 +46,28 @@ body {
   margin-right: 10%;
 }
 
-.rectangle {
-  background-color: #FFFFFF;
-  margin: 15%;
-}
 
 .text_and_button {
   color: #2f2f2f;
-  position: relative;
-  padding: 50px;
 }
 
 .intro_header {
-  font-size: 20px;
+  font-family: "Gluten", sans-serif;
+  font-size: 42px;
+  font-weight: thin;
 }
 
+.cat-images {
+  display: flex;
+  flex-wrap: wrap; /* Obrazy będą zawijać się do kolejnego wiersza, gdy przekroczą szerokość */
+  justify-content: center;
+}
+
+.cat-image {
+  width: auto; /* Ustawiamy szerokość na automatycznie, aby nie rozciągać obrazu */
+  height: auto; /* Ustawiamy wysokość na automatycznie, aby nie ściskać obrazu */
+  max-width: 629px; /* Maksymalna szerokość obrazu */
+  max-height: 485px; /* Maksymalna wysokość obrazu */
+  margin: 10px;
+}
 </style>
