@@ -12,7 +12,7 @@
         </div>
       </div>
     </div>
-    <a href="/setaccount">
+    <a href="/signup">
       <button>Let's go!</button>
     </a>
   </div>
