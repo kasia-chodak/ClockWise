@@ -1,17 +1,19 @@
 <template>
-  <div class="main_body">
+  <body>
+    <div class="main_body">
       <div class="text_and_button">
         <div>
           <p class="intro_header"><b>Congrats! You have achieved your goal.</b><br><b>Here is your reward:</b></p>
 
         </div>
-        <div class="cat-images">
+          <div class="cat-images">
           <!-- Wyświetlanie zdjęć kotów -->
           <img v-for="(cat, index) in catImages" :key="index" :src="cat.url" alt="Kot" width="629" height="485">
-        </div>
+          </div>
       </div>  
-  </div>
+    </div>
     <a href="/SuccessPage" class="button">Make a new clock</a>
+  </body>
 </template>
 
 <script setup>
@@ -31,20 +33,21 @@ onMounted(async () => {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Gluten:wght@100..900&display=swap');
+
 body {
   background-image: url("../assets/clocks.jpg");
   background-repeat: repeat;
-  height: 100%;
-  width: 100%;
-
+  z-index: 1;
 }
 
 .main_body {
   background-color: #E5F0E8;
-  width: 100%;
-  height: 100%;
+  width: 1380px;
+  height: 896px;
   margin: 0 auto;
   padding-top: 25px;
+  z-index: 2;
 }
 
 

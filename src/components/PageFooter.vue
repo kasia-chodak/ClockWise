@@ -7,22 +7,25 @@
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Gluten:wght@100..900&display=swap');
+
+* {
+  margin: 0;
+  border: 0;
+}
 
 footer {
-  position: fixed;
+  position: sticky;
+  left: 0;
   bottom: 0;
-  height: 40px ;
   width: 100%;
-  display: flex;
-  justify-content: center; /* Wyśrodkowanie zawartości w poziomie */
-  align-items: center; /* Wyśrodkowanie zawartości w pionie */
-  color: #2f2f2f;
-  background-color: #7DA193;
-  margin: 0;
+  background-color: #7da193;
+  text-align: center;
+  font-family: Gluten, "Courier New", sans-serif;
+  padding: 5px;
+  flex-shrink: 0;
+  z-index: 1000;
 }
 
-footer > * {
-  flex:  1 100%;
-  text-align: center; /* Wyśrodkowanie tekstu wewnątrz stopki */
-}
+
 </style>
