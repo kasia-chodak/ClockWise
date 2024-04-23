@@ -1,20 +1,20 @@
 <template>
   <div>
     <page-top-part/>
-    <main-component-init/>
+    <main-component-success-page/>
     <page-footer/>
   </div>
 </template>
 
 <script>
 import PageTopPart from "@/components/PageTopPart.vue";
-import MainComponentInit from "@/components/MainComponentInit.vue";
+import MainComponentSuccessPage from "@/components/MainComponentSuccessPage.vue";
 import PageFooter from "@/components/PageFooter.vue";
 
 export default {
   components: {
     PageTopPart,
-    MainComponentInit,
+    MainComponentSuccessPage,
     PageFooter
   }
 }

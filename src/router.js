@@ -1,12 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import InitPage from "@/views/InitPage.vue";
+import SuccessPage from '@/views/SuccessPage.vue';
 
 export default createRouter({
     history: createWebHistory(),
     routes: [
         {
             path: "/",
-            component: InitPage
+            component: SuccessPage
         }
     ]
 })

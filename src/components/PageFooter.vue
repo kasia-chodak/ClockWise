@@ -9,16 +9,16 @@
 <style scoped>
 
 footer {
-  position: sticky;
+  position: fixed;
   bottom: 0;
+  height: 40px ;
   width: 100%;
   display: flex;
   justify-content: center; /* Wyśrodkowanie zawartości w poziomie */
   align-items: center; /* Wyśrodkowanie zawartości w pionie */
-  padding: 5px;
   color: #2f2f2f;
   background-color: #7DA193;
-  margin: auto;
+  margin: 0;
 }
 
 footer > * {

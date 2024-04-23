@@ -1,14 +1,14 @@
 <template>
-  <InitPage/>
+  <SuccessPage/>
 </template>
 
 <script>
-import InitPage from "@/views/InitPage.vue";
+import SuccessPage from "@/views/SuccessPage.vue";
 
 export default {
   name: 'App',
   components: {
-    InitPage
+    SuccessPage
   }
 }
 </script>
@@ -20,6 +20,8 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: -10px;
+  margin-right: -10px;
+  margin-left: -10px;
 }
 </style>
