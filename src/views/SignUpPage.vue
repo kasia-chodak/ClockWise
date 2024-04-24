@@ -2,18 +2,22 @@
     <div class="signup-page">
         <PageTopPart />
         <div class="sign-up-container">
-            <h2>Sign Up</h2>
+            <img src="../assets/signup.png" alt="Sign up image" class="signup-image">
+            <h2>Sign up to ClockWise</h2>
             <form @submit.prevent="signup">
                 <input type="text" v-model="username" placeholder="Username" required>
                 <input type="password" v-model="password" placeholder="Password" required>
                 <input type="password" v-model="confirmPassword" placeholder="Confirm Password" required>
-                <button type="submit">Sign Up</button>
+                <div class="button-container"> <!-- New container for the button -->
+                    <button type="submit" class="cta-button">Set up account</button>
+                </div>
             </form>
             <p>Already have an account? <router-link to="/login">Go to login page</router-link></p>
         </div>
         <PageFooter />
     </div>
 </template>
+
 
 <script>
 import PageTopPart from '@/components/PageTopPart.vue';
@@ -40,30 +44,48 @@ export default {
 }
 </script>
 
+
 <style scoped>
+
 .signup-page {
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
-    min-height: 100vh;
+    min-height: 100vh; /* Extend to the full height of the viewport */
     background-image: url("../assets/clocks.jpg");
     background-repeat: repeat;
     background-size: 20%;
     background-position: center;
 }
 
-.sign-up-container {
-    flex: 1;
-    margin: 0 auto;
-    width: 80%;
-    max-width: 800px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #E5F0E8;
+.signup-image {
+  width: 80px; 
+  height: auto; /* Maintain aspect ratio */
 }
 
+.sign-up-container {
+    width: 80%;
+    max-width: 800px;
+    padding: 50px 60px;
+    background-color: #e5f0e8;
+    margin-top: 20px;
+    margin-bottom: 0; /* Adjusted to 0 to remove the bottom margin */
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    flex: 1; /* Expand to fill remaining space */
+    font-family: "Gluten", sans-serif;
+    font-weight: 150;
+    font-size: 15px;
+}
+
+
 .sign-up-container h2 {
-    margin-bottom: 20px;
+    margin-bottom: 50px;
+    text-align: center;
+    font-family: "Gluten", sans-serif;
+    font-weight: 150;
+    font-size: 20px;
 }
 
 
@@ -72,24 +94,28 @@ export default {
     margin-bottom: 10px;
     padding: 10px;
     border: 1px solid #ccc;
-    border-radius: 5px;
+    border-radius: 30px;
 }
 
-.sign-up-container form button {
-    display: block;
-    width: 20%;
-    margin: 0 auto; /* Center horizontally */
-    padding: 10px;
-    background-color: #007bff;
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+
+.cta-button {
+    border-radius: 30px;
+    background-color: #4d6a5f;
     color: #fff;
+    padding: 20px 20px;
+    font: 500 20px Gluten, "Courier New", sans-serif;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
 }
 
-.sign-up-container form button:hover {
-    background-color: #0056b3;
-}
 
 .page-footer {
     margin-top: auto;
@@ -97,5 +123,6 @@ export default {
     text-align: center;
     padding: 5px;
     font-family: Gluten, "Courier New", sans-serif;
+    width: 100%
 }
 </style>

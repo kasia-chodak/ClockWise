@@ -1,6 +1,8 @@
 <template>
   <header>
-    <p class="brand_name">ClockWise</p>
+    <router-link to="/">
+      <p class="brand_name">ClockWise</p>
+    </router-link>
     <button class="user_icon_button"><img src="../assets/user.png" height="50px" width="50px"></button>
   </header>
 </template>
@@ -33,6 +35,7 @@ header {
 
 .brand_name {
   margin: 0 auto;
+  margin-left: 350%;
   color: #2f2f2f;
   text-align: center;
   flex-grow: 1;
@@ -46,7 +49,10 @@ header {
   width: 50px;
   height: 50px;
   padding-right: 100px;
+  align-self: flex-end; /* Align to the bottom of the header */
+  margin-left: auto; /* Push to the right */
 }
+
 
 .user_icon_button:hover {
   transform: scale(1.1);
