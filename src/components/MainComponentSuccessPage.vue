@@ -1,18 +1,17 @@
 <template>
   <body>
     <div class="main_body">
-      <div class="text_and_button">
+      <div class="text_and_images">
         <div>
           <p class="intro_header"><b>Congrats! You have achieved your goal.</b><br><b>Here is your reward:</b></p>
-
         </div>
-          <div class="cat-images">
+        <div class="cat-images">
           <!-- Wyświetlanie zdjęć kotów -->
           <img v-for="(cat, index) in catImages" :key="index" :src="cat.url" alt="Kot" width="629" height="485">
-          </div>
+        </div>
+        <a href="/SuccessPage" class="button">Make a new clock</a>
       </div>  
     </div>
-    <a href="/SuccessPage" class="button">Make a new clock</a>
   </body>
 </template>
 
@@ -38,20 +37,19 @@ onMounted(async () => {
 body {
   background-image: url("../assets/clocks.jpg");
   background-repeat: repeat;
-  z-index: 1;
 }
 
 .main_body {
+  position: relative; /* Ustaw kontener na pozycję względną */
   background-color: #E5F0E8;
-  width: 1380px;
-  height: 896px;
-  margin: 0 auto;
+  width: 80%;
+  height: 100%;
+  margin: auto ;
+  margin-top: 76px;
   padding-top: 25px;
-  z-index: 2;
 }
 
-
-.text_and_button {
+.text_and_images {
   color: #2f2f2f;
 }
 
@@ -62,30 +60,32 @@ body {
 
 .cat-images {
   display: flex;
-  flex-wrap: wrap; /* Obrazy będą zawijać się do kolejnego wiersza, gdy przekroczą szerokość */
+  flex-wrap: wrap;
   justify-content: center;
-  background-color: #E5F0E8; /* Dodaj kolor tła dla kontenera obrazów */
-  padding: 20px; /* Dodaj wypełnienie dla kontenera obrazów */
+  background-color: #E5F0E8;
+  padding: 20px;
 }
 
 .cat-image {
-  width: auto; /* Ustawiamy szerokość na automatycznie, aby nie rozciągać obrazu */
-  height: auto; /* Ustawiamy wysokość na automatycznie, aby nie ściskać obrazu */
-  max-width: 629px; /* Maksymalna szerokość obrazu */
-  max-height: 485px; /* Maksymalna wysokość obrazu */
+  width: auto;
+  height: auto;
+  max-width: 629px;
+  max-height: 485px;
 }
+
 .button {
   display: inline-block;
   width: 322px;
   height: 83px;
   border-radius: 30px;
-  background-color: #4D6A5F; /* Dodaj swój kolor tła */
-  color: #FFFFFF; /* Dodaj swój kolor tekstu */
-  margin-top: 36px;
+  background-color: #4D6A5F;
+  color: #FFFFFF;
   font-family: "gluten medium", sans-serif;
-  font-size: 24px; /* Rozmiar tekstu */
+  font-size: 24px;
   text-align: center;
-  line-height: 83px; /* Dopasuj wysokość przycisku do jego wysokości */
-  text-decoration: none; /* Usuń podkreślenie odnośnika */
+  line-height: 83px;
+  text-decoration: none;
+  position: relative; /* Ustaw przycisk na pozycję względną */
+  z-index: 2; /* Ustaw z-index na wartość większą niż tło .main_body */
 }
 </style>
