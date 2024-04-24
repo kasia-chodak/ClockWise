@@ -1,12 +1,9 @@
 <template>
   <header>
-    <router-link to="/">
-      <p class="brand_name">ClockWise</p>
-    </router-link>
+    <a href="/" class="brand_name">ClockWise</a>
     <button class="user_icon_button"><img src="../assets/user.png" height="50px" width="50px"></button>
   </header>
 </template>
-
 <script setup>
 
 </script>
@@ -35,12 +32,12 @@ header {
 
 .brand_name {
   margin: 0 auto;
-  margin-left: 350%;
   color: #2f2f2f;
   text-align: center;
   flex-grow: 1;
   font-size: 36px;
   font-family: Gluten, "Courier New", sans-serif;
+  text-decoration: none;
 }
 
 .user_icon_button {
