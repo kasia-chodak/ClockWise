@@ -6,13 +6,17 @@ export default createRouter({
     history: createWebHistory(),
     routes: [
         {
+            path: "/",
+            redirect: "/SuccessPage" // Domyślnie przekierowuje do SuccessPage
+        },
+        {
             path: "/SuccessPage",
-            name: SuccessPage,
+            name: "SuccessPage",
             component: SuccessPage
         },
         {
             path: "/AllTimersView",
-            name: AllTimersView,
+            name: "AllTimersView",
             component: AllTimersView
         }
     ]
