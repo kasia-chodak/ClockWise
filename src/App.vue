@@ -1,14 +1,16 @@
 <template>
+  <AllTimersView/>
   <SuccessPage/>
 </template>
 
 <script>
+import AllTimersView from "@/views/AllTimersView.vue";
 import SuccessPage from "@/views/SuccessPage.vue";
-
 export default {
   name: 'App',
   components: {
-    SuccessPage
+    AllTimersView,
+     SuccessPage
   }
 }
 </script>

@@ -9,7 +9,7 @@
           <!-- Wyświetlanie zdjęć kotów -->
           <img v-for="(cat, index) in catImages" :key="index" :src="cat.url" alt="Kot" width="629" height="485">
         </div>
-        <a href="/SuccessPage" class="button">Make a new clock</a>
+        <a href="/AllTimersView" class="button">Make a new clock</a>
       </div>  
     </div>
   </body>
