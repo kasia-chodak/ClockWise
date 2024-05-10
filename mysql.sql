@@ -6,9 +6,8 @@
 
 INSERT INTO Users(usr_id,usr_name,usr_password)
 VALUES(1,Kacper,123)
-
+*/
 CREATE TABLE Tasks(
     tsk_id INTEGER NOT NULL PRIMARY KEY,
     tsk_name VARCHAR NOT NULL,
-    tsk_execution_date DATE NOT NULL)
-   */
+    tsk_execution_date DATETIME NOT NULL)
