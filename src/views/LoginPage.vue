@@ -36,6 +36,8 @@ export default {
     login() {
       // login logic here (send a request to the server to authenticate the user)
       console.log('Logging in...');
+       // Assuming the login was successful, navigate to the account page
+      this.$router.push('/account');
     }
   }
 }
