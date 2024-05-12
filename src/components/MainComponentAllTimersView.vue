@@ -1,24 +1,24 @@
-<template>
-  <body>
-    <div class="container">
-      <div class="heading">
-        <p>All trackers</p>
-        <div class="trackers-container">
-          <div class="tracker" v-for="(n, index) in 4" :key="n" :style="getTrackerPosition(index)">
-            <div class="circle">
-              <span>{{ n }}</span>
-            </div>
-            <div class="label">
-              <p>Zadanie{{ n }}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>  
-  </body>
-</template>
-
 <script setup>
+
+import { ref } from 'vue';
+// Zakładając, że masz funkcję do pobierania danych z bazy danych
+import { fetchTasksFromAPI } from '@/scripts/databaseconnection';
+
+const taskData = ref([]); // Użyj ref do śledzenia zmian w danych
+
+// Pobierz dane z bazy danych
+fetchTasksFromAPI().then(data => {
+  taskData.value = data;
+});
+
+const getDaysLeft = (executionDay) => {
+  const today = new Date();
+  const executionDate = new Date(executionDay);
+  const differenceInTime = executionDate.getTime() - today.getTime();
+  const differenceInDays = Math.ceil(differenceInTime / (1000 * 3600 * 24));
+  return differenceInDays;
+}
+
 const getTrackerPosition = (index) => {
   if (index === 0) {
     return {
@@ -43,6 +43,26 @@ const getTrackerPosition = (index) => {
   }
 }
 </script>
+
+<template>
+  <body>
+    <div class="container">
+      <div class="heading">
+        <p>All trackers</p>
+        <div class="trackers-container">
+          <div class="tracker" v-for="(n, index) in 4" :key="n" :style="getTrackerPosition(index)">
+            <div class="circle">
+              <span>{{ getDaysLeft(task.execution_day) }}</span>
+            </div>
+            <div class="label">
+              <p>{{ task.tsk_name }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>  
+  </body>
+</template>
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Gluten:wght@100..900&display=swap');
