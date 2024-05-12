@@ -7,17 +7,24 @@
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Gluten:wght@100..900&display=swap');
+
+*{
+  margin: 0;
+  border: 0;
+}
 
 footer {
   position: sticky;
+  left: 0;
   bottom: 0;
   width: 100%;
-  display: flex;
-  flex-flow: row wrap;
-  padding: 5px;
-  color: #2f2f2f;
   background-color: #7DA193;
-  margin: auto;
+  text-align: center;
+  font-family: Gluten, "Courier New", sans-serif;
+  padding: 5px;
+  flex-shrink: 0;
+  z-index: 1000;
 }
 
 footer > * {
