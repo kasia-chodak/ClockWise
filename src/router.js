@@ -1,6 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 import InitPage from "@/views/InitPage.vue";
+import AllTimersView from "@/views/AllTimersView.vue";
+import ContinuePage from "@/views/ContinuePage.vue";
+import SuccessPage from "@/views/SuccessPage.vue";
 import FailurePage from "@/views/FailurePage.vue";
 
 export default createRouter({
@@ -32,13 +35,16 @@ export default createRouter({
             path: "/:timer_id/end"
         },
         {
-            path: "/all_timers"
+            path: "/all_timers",
+            component: AllTimersView
         },
         {
-            path: "/:timer_id/continue"
+            path: "/:timer_id/continue",
+            component: ContinuePage
         },
         {
-            path: "/success"
+            path: "/success",
+            component: SuccessPage
         },
         {
             path: "/fail",
