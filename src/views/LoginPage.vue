@@ -20,6 +20,7 @@
 <script>
 import PageTopPart from '@/components/PageTopPart.vue';
 import PageFooter from '@/components/PageFooter.vue';
+import { login } from '@/controllers/signup';
 
 export default {
   components: {
@@ -33,15 +34,23 @@ export default {
     };
   },
   methods: {
-    login() {
-      // login logic here (send a request to the server to authenticate the user)
-      console.log('Logging in...');
-       // Assuming the login was successful, navigate to the account page
-      this.$router.push('/account');
-    }
+      async login() {
+        try {
+          // Call the login function with the username and password
+          const data = await login(this.username, this.password);
+          console.log('Login successful:', data);
+
+          // Redirect to the account page after successful login
+          this.$router.push('/account');
+        } catch (error) {
+          console.error('Error logging in:', error);
+          // Handle login failure, display error message, etc.
+        }
+      }
   }
 }
 </script>
+
 
 <style scoped>
 .login-page {

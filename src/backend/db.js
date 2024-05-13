@@ -1,15 +1,12 @@
-// db.js
-
 const sqlite3 = require('sqlite3').verbose();
+const dbPath = './database.db'; // Relative path to database.db file
 
-// Connect to SQLite database
-const db = new sqlite3.Database(':memory:', (err) => {
+const db = new sqlite3.Database(dbPath, (err) => {
     if (err) {
         return console.error('Error connecting to SQLite database:', err.message);
     }
     console.log('Connected to SQLite database');
 });
 
-// Export the SQLite database instance
 module.exports = db;
 

@@ -4,11 +4,13 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve --host localhost",
+    "start": "node src/backend/server.js",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "core-js": "^3.8.3",
+    "cors": "^2.8.5",
     "express": "^4.19.2",
     "mongodb": "^6.6.1",
     "sqlite3": "^5.1.7",
