@@ -3,6 +3,7 @@ import InitPage from "@/views/InitPage.vue";
 import SignUpPage from "@/views/SignUpPage.vue";
 import LoginPage from "@/views/LoginPage.vue";
 import AccountPage from "@/views/AccountPage.vue";
+import CreateTrackerPage from '@/views/CreateTrackerPage.vue';
 import AccountStatistics from "@/views/AccountStatistics.vue"
 
 const routes = [
@@ -27,6 +28,11 @@ const routes = [
         name: 'account',
         component: AccountPage,
         props: true // Pass route params as props to the component
+    },
+    {
+        path: '/create-tracker',
+        name: 'CreateTracker',
+        component: CreateTrackerPage
     },
     {
         path: '/statistics',

@@ -18,6 +18,9 @@
                             <p>Tracker 2</p>
                         </div>
                         <!-- Add more tracker items as needed -->
+                        <button @click="goToCreateTrackerPage" class="create-tracker-button">
+                        Create New Tracker
+                        </button>
                     </div>
                 </div>
                 <div class="white-box">
@@ -46,12 +49,19 @@ export default {
         PageFooter
     },
     props: {
-    username: {
-      type: String,
-      required: true
+        username: {
+            type: String,
+            required: true
+        }
+    },
+    
+    methods: {
+    goToCreateTrackerPage() {
+      this.$router.push('/create-tracker');
     }
-    }
+  }
 }
+
 </script>
 
 <style scoped>
@@ -123,10 +133,19 @@ export default {
 
 .tracker-item {
     background-color: #C7DECE;
-    padding: 20px;
+    padding: 5px;
     border-radius: 30px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
+}
+
+.create-tracker-button {
+    background-color: #C7DECE;
+    padding: 10px;
+    border-radius: 30px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    cursor: pointer;
 }
 
 .statistics-box {
