@@ -4,11 +4,13 @@
     <div class="login-container">
       <img src="../assets/signup.png" alt="Sign up image" class="login-image">
       <h2>Log in to ClockWise</h2>
-      <form @submit.prevent="login">
+      <form ref="loginForm">
+      <!-- <form @submit.prevent="login"> -->
         <input type="text" v-model="username" placeholder="Username" required>
         <input type="password" v-model="password" placeholder="Password" required>
         <div class="button-container"> 
-                    <button type="submit" class="cta-button">Log in</button>
+          <!-- <button type="submit" class="cta-button">Log in</button> -->
+          <button type="button" class="cta-button" @click="login">Log in</button>
         </div>
       </form>
       <p>Don't have an account yet? <router-link to="/signup">Sign up for Clockwise</router-link></p>
@@ -34,19 +36,24 @@ export default {
     };
   },
   methods: {
-      async login() {
-        try {
-          // Call the login function with the username and password
-          const data = await login(this.username, this.password);
-          console.log('Login successful:', data);
-
-          // Redirect to the account page after successful login
-          this.$router.push('/account');
-        } catch (error) {
-          console.error('Error logging in:', error);
+    async login() {
+      try {
+        const data = await login(this.username, this.password);
+        console.log('Login response:', data);
+        
+        if (data && data.message === 'User logged in successfully') {
+          // Redirect to the account page after successful login and pass the username
+          this.$router.push({ name: 'account', params: { username: this.username } });
+        } else {
+          console.error('Login failed:', data && data.message);
           // Handle login failure, display error message, etc.
         }
+      } catch (error) {
+        console.error('Error logging in:', error);
+        // Handle login failure, display error message, etc.
       }
+    }
+
   }
 }
 </script>

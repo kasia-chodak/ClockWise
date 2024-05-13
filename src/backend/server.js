@@ -59,6 +59,43 @@ app.post('/api/login', async (req, res) => {
     }
 });
 
+// Helper functions to interact with the database
+async function getUserByUsername(username) {
+    return new Promise((resolve, reject) => {
+        db.get('SELECT * FROM Users WHERE usr_name = ?', [username], (err, user) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(user);
+            }
+        });
+    });
+}
+
+async function getUserByUsernameAndPassword(username, password) {
+    return new Promise((resolve, reject) => {
+        db.get('SELECT * FROM Users WHERE usr_name = ? AND usr_password = ?', [username, password], (err, user) => {
+            if (err) {
+                reject(err);
+            } else {
+                resolve(user);
+            }
+        });
+    });
+}
+
+async function createUser(username, password) {
+    return new Promise((resolve, reject) => {
+        db.run('INSERT INTO Users(usr_name, usr_password) VALUES(?, ?)', [username, password], function(err) {
+            if (err) {
+                reject(err);
+            } else {
+                resolve();
+            }
+        });
+    });
+}
+
 // Start the server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

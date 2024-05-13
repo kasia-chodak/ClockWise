@@ -4,6 +4,7 @@
         <div class="account-container">
             <img src="../assets/signup.png" alt="Sign up image" class="signup-image">
             <h2>Your account</h2>
+            <p class="username-text">{{ username }}</p> <!-- Display the username -->
             <div class="trackers-statistics-container">
                 <div class="white-box">
                     <p class="box-title">Your trackers</p>
@@ -15,7 +16,6 @@
                         </div>
                         <div class="tracker-item">
                             <p>Tracker 2</p>
-                            <!-- Add more elements or data related to Tracker 2 -->
                         </div>
                         <!-- Add more tracker items as needed -->
                     </div>
@@ -45,9 +45,11 @@ export default {
         PageTopPart,
         PageFooter
     },
-    data() {
-    },
-    methods: {
+    props: {
+    username: {
+      type: String,
+      required: true
+    }
     }
 }
 </script>
@@ -86,7 +88,7 @@ export default {
 }
 
 .account-container h2 {
-    margin-bottom: 50px;
+    margin-bottom: 10px;
     text-align: center;
     font-family: "Gluten", sans-serif;
     font-weight: 150;

@@ -23,9 +23,16 @@ const routes = [
         component: AccountPage
     },
     {
+        path: '/account/:username', // Define a dynamic segment for the username
+        name: 'account',
+        component: AccountPage,
+        props: true // Pass route params as props to the component
+    },
+    {
         path: '/statistics',
         component: AccountStatistics
     }
+    
 ];
 
 const router = createRouter({
