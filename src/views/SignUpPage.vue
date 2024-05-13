@@ -22,6 +22,7 @@
 <script>
 import PageTopPart from '@/components/PageTopPart.vue';
 import PageFooter from '@/components/PageFooter.vue';
+import {createAccount} from "@/controllers/signup";
 
 export default {
     components: {
@@ -37,43 +38,17 @@ export default {
     },
     methods: {
         signup() {
-    // Check if passwords match
-    if (this.password !== this.confirmPassword) {
-        console.error("Passwords do not match");
-        return;
-    }
-    
-    // Prepare user data
-    const userData = {
-        username: this.username,
-        password: this.password
-    };
+          // Check if passwords match
+          if (this.password !== this.confirmPassword) {
+            console.error("Passwords do not match");
+            return;
+          }
 
-    // Send user data to backend for registration
-    fetch('/api/signup', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(userData)
-    })
-    .then(response => {
-        console.log('Response:', response);
-        if (response.ok) {
-            console.log('User signed up successfully');
-            // Redirect user to login page after successful sign-up
-            this.$router.push('/login');
-        } else {
-            console.error('Failed to sign up:', response.statusText);
-            // Handle sign-up failure, display error message, etc.
-        }
-    })
-    .catch(error => {
-        console.error('Error signing up:', error);
-        // Handle error, display error message, etc.
-    });
-}
-
+          createAccount(this.username, this.password)
+              .then(()=>{
+                this.$router.push('/login');
+              })
+          }
     }
 }
 </script>

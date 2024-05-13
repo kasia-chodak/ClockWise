@@ -20,6 +20,7 @@
 <script>
 import PageTopPart from '@/components/PageTopPart.vue';
 import PageFooter from '@/components/PageFooter.vue';
+import {login as loginFunc} from '@/controllers/signup'
 
 export default {
   components: {
@@ -35,9 +36,11 @@ export default {
   methods: {
     login() {
       // login logic here (send a request to the server to authenticate the user)
-      console.log('Logging in...');
+      loginFunc(this.username, this.password).then(() => {
+        this.$router.push('/account');
+      }).catch(err => console.log(err));
        // Assuming the login was successful, navigate to the account page
-      this.$router.push('/account');
+
     }
   }
 }
