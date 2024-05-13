@@ -15,5 +15,4 @@ CREATE TABLE Tasks(
 --DELETE FROM Tasks
 --ALTER TABLE Tasks
 --ADD COLUMN tsk_usrid INTEGER NOT NULL
-
-ADD CONSTRAINT fk_user FOREIGN KEY (tsk_usrid) REFERENCES Users (usr_id)
+--ADD CONSTRAINT fk_user FOREIGN KEY (tsk_usrid) REFERENCES Users (usr_id);

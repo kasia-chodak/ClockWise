@@ -12,7 +12,7 @@
               <p>Zadanie{{ n }}</p>
             </div>
           </div>
-        </div>
+        </div>  
       </div>
     </div>  
   </body>
@@ -67,8 +67,7 @@ body {
   width: 100%;
   margin: 0 auto;
   padding: 25px;
-  background-color: #E5F0E8;
-  z-index: 1;
+  background-color: #E5F0E8; /* Dodane tło koloru #E5F0E8 */
 }
 
 .heading {
@@ -80,7 +79,9 @@ body {
 
 .trackers-container {
   position: relative;
-  background-color: #E5F0E8;
+  height: 100%;
+  width: 100%;
+  background-color: #E5F0E8; /* Dodane tło koloru #E5F0E8 */
 }
 
 .tracker {

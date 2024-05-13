@@ -1,5 +1,5 @@
 <template>
-    <div>
+  <div>
       <page-top-part/>
       <main-component-all-timers-view/>
       <page-footer/>
@@ -20,5 +20,5 @@
   }
   </script>
   
-  <style scoped>
-  </style>
+<style scoped>
+</style>
