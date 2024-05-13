@@ -1,11 +1,16 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 import InitPage from "@/views/InitPage.vue";
+import SignUpPage from "@/views/SignUpPage.vue";
+import LoginPage from "@/views/LoginPage.vue";
+import AccountPage from "@/views/AccountPage.vue";
+import AccountStatistics from "@/views/AccountStatistics.vue"
 import StartTimerPage from "@/views/StartTimerPage.vue";
 import AllTimersView from "@/views/AllTimersView.vue";
 import ContinuePage from "@/views/ContinuePage.vue";
 import SuccessPage from "@/views/SuccessPage.vue";
 import FailurePage from "@/views/FailurePage.vue";
+
 
 export default createRouter({
     history: createWebHistory(),
@@ -15,16 +20,20 @@ export default createRouter({
             component: InitPage
         },
         {
-            path: "/signup"
+            path: "/signup",
+            component: SignUpPage
         },
         {
-            path: "/login"
+            path: "/login",
+            component: LoginPage
         },
         {
-            path: "/:user_id/account"
+            path: "/:user_id/account",
+            component: AccountPage
         },
         {
-            path: "/:user_id/statistics"
+            path: "/:user_id/statistics",
+            component: AccountStatistics
         },
         {
             path: "/start_timer",

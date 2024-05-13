@@ -24,7 +24,9 @@
                 <p>Join us on the journey to success. Start today!</p>
                 <br>
               </div>
-              <button class="cta-button">Let's go!</button>
+              <router-link to="/signup">
+                <button class="cta-button">Let's go!</button>
+              </router-link>
             </div>
           </div>
         </article>
