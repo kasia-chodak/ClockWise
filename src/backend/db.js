@@ -19,11 +19,11 @@ db.run(`CREATE TABLE IF NOT EXISTS Tasks(
                                             tsk_id INTEGER NOT NULL PRIMARY KEY,
                                             tsk_name VARCHAR NOT NULL,
                                             tsk_execution_date DATETIME NOT NULL,
+                                            tsk_finish_date DATETIME NULL DEFAULT NULL,
                                             tsk_user_id INTEGER,
                                             FOREIGN KEY(tsk_user_id) REFERENCES Users(usr_id)
         );
 `)
-
 
 
 // Export the SQLite database instance

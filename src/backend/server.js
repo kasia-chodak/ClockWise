@@ -71,6 +71,80 @@ app.post('/api/task', async (req, res) => {
     });
 });
 
+app.put('/api/task', async (req, res) => {
+    const { taskId, date, userId } = req.body;
+    db.run(`UPDATE Tasks SET tsk_finish_date=?  WHERE tsk_id = ? AND tsk_user_id = ?`, [date, taskId,  userId], function(err) {
+        if (err) {
+            res.sendStatus(500);
+            console.error("Error inserting mission data into database:", err.message);
+            return;
+        }
+        res.status(200).json({
+            success: true
+        })
+        console.log(`Row inserted with rowid: ${this.lastID}`);
+    });
+});
+
+app.get('/api/tasks/:userId', async (req, res) => {
+    const {userId} = req.params;
+
+    db.all('SELECT * FROM Tasks WHERE tsk_usr_id = ?', [userId], function (err, results) {
+        if (err) {
+            res.sendStatus(500);
+            console.error('Error getting tasks for user from the db')
+            return;
+        }
+        res.status(200).json({
+            results,
+        });
+    })
+})
+
+app.get('api/tasks/:userId/statistics', async (req, res) => {
+    const {userId} = req.params;
+
+    db.get(`
+        WITH FinishedOnTime AS (
+            SELECT COUNT(*) AS on_time_count
+            FROM Tasks
+            WHERE tsk_finish_date IS NOT NULL
+              AND tsk_execution_date >= tsk_finish_date
+              AND tsk_user_id = ?
+        ),
+             FinishedLate AS (
+                 SELECT COUNT(*) AS late_count
+                 FROM Tasks
+                 WHERE tsk_finish_date IS NOT NULL
+                   AND tsk_execution_date < tsk_finish_date
+                   AND tsk_user_id = ?
+             ),
+             NotFinished AS (
+                 SELECT COUNT(*) AS not_finished_count
+                 FROM Tasks
+                 WHERE tsk_finish_date IS NULL
+                   AND tsk_user_id = ?
+             ),
+             TotalTasks AS (
+                 SELECT COUNT(*) AS total_count
+                 FROM Tasks
+                 WHERE tsk_user_id = ?
+             )
+        SELECT onTimeCount, lateCount, notFinishedCount, totalCount
+        FROM FinishedOnTime, FinishedLate, NotFinished, TotalTasks;
+
+    `, [userId, userId, userId, userId], function (err, result) {
+        if (err) {
+            res.sendStatus(500);
+            console.error('Error getting tasks for user from the db')
+            return;
+        }
+        res.status(200).json({
+            result,
+        });
+    })
+})
+
 // Start the server
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
