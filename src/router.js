@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 import InitPage from "@/views/InitPage.vue";
+import StartTimerPage from "@/views/StartTimerPage.vue";
 import AllTimersView from "@/views/AllTimersView.vue";
 import ContinuePage from "@/views/ContinuePage.vue";
 import SuccessPage from "@/views/SuccessPage.vue";
@@ -26,7 +27,8 @@ export default createRouter({
             path: "/:user_id/statistics"
         },
         {
-            path: "/start_timer"
+            path: "/start_timer",
+            component: StartTimerPage
         },
         {
             path: "/:timer_id/view"
