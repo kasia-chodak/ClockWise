@@ -36,8 +36,14 @@ export default {
   methods: {
     login() {
       // login logic here (send a request to the server to authenticate the user)
-      loginFunc(this.username, this.password).then(() => {
-        this.$router.push('/account');
+      loginFunc(this.username, this.password).then((res) => {
+        if (!res.usr_id) {
+          console.error('PROBLEM NO USER ID AFTER LOGIN');
+          return;
+        }
+        localStorage.setItem('userId', res.usr_id);
+
+        this.$router.push(`/${res.usr_id}/account`);
       }).catch(err => console.log(err));
        // Assuming the login was successful, navigate to the account page
 

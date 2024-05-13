@@ -33,39 +33,29 @@
 import { ref } from 'vue';
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
-import sqlite3 from 'sqlite3';
+import { createTask } from "@/controllers/task";
 
 export default {
   components: { VueDatePicker },
   setup() {
     const missionName = ref("");
     const date = ref(null);
-    const db = new sqlite3.Database('database.sqlite');
+    const userId = localStorage.getItem('userId');
 
     const submit = () => {
-      console.log(missionName);
-      console.log(date);
       if (missionName.value && date.value !== null) {
         const formattedDate = new Date(date.value);
         const missionData = {
           name: missionName.value,
           date: formattedDate.toISOString()
         };
-        insertIntoDatabase(missionData);
-        console.log("Mission data inserted into database:", missionData);
+        createTask(missionData.name, missionData.date, userId).then(() => {
+          console.log("Mission data inserted into database:", missionData);
+        });
+
       } else {
         alert("Please fill in all fields.");
       }
-    };
-
-    const insertIntoDatabase = (missionData) => {
-      db.run(`INSERT INTO Tasks (tsk_name, tsk_execution_date) VALUES (?, ?)`, [missionData.name, missionData.date], function(err) {
-        if (err) {
-          console.error("Error inserting mission data into database:", err.message);
-        } else {
-          console.log(`Row inserted with row id: ${this.lastID}`);
-        }
-      });
     };
 
     return {

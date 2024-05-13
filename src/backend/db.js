@@ -14,11 +14,17 @@ db.run(`CREATE TABLE IF NOT EXISTS Users (
                                              usr_name VARCHAR NOT NULL,
                                              usr_password VARCHAR NOT NULL
         );
-CREATE TABLE IF NOT EXISTS Tasks(
-                      tsk_id INTEGER NOT NULL PRIMARY KEY,
-                      tsk_name VARCHAR NOT NULL,
-                      tsk_execution_date DATETIME NOT NULL);
 `)
+db.run(`CREATE TABLE IF NOT EXISTS Tasks(
+                                            tsk_id INTEGER NOT NULL PRIMARY KEY,
+                                            tsk_name VARCHAR NOT NULL,
+                                            tsk_execution_date DATETIME NOT NULL,
+                                            tsk_user_id INTEGER,
+                                            FOREIGN KEY(tsk_user_id) REFERENCES Users(usr_id)
+        );
+`)
+
+
 
 // Export the SQLite database instance
 module.exports = db;
