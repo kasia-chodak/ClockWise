@@ -3,9 +3,15 @@
 </template>
 
 <script>
+import {taskStore} from "@/stores/taskStore";
+
 export default {
   name: 'App',
   components: {
+  },
+  setup() {
+    taskStore.loadUserId();
+    taskStore.loadUserTasks();
   }
 }
 </script>

@@ -41,3 +41,13 @@ This page indicates that the requested content could not be found. It serves as 
 This page allows you to end the mission or continue it after the deadline. By clicking the surrender button, we conclude with failure; the second option is to return to the page with the clock and continue the task after the time is up.
 ### Congratulations :) /No congratulations :(
 Depending on your response on the check-up page, you will be directed to a page where you will receive congratulations if you successfully completed your mission, or a page where you will receive words of encouragement if the mission ends in failure. As a reward for your diligence, you will receive a picture of an adorable kitty.
+
+### How to start
+Open two terminal instances and run
+```bash
+npm run serve
+```
+and
+```bash
+npm run server
+```

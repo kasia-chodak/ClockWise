@@ -9,21 +9,49 @@
           <div class="ellipse2"></div>
           <div class="ellipse3"></div>
           <div class="ellipse4"></div>
-          <span class="flex-row">04</span><span class="flex-row-6">04</span
-          ><span class="flex-row-7">04</span><span class="flex-row-8">04</span
-          ><span class="flex-row-9">04</span>
+          <span class="flex-row">{{ groupedTime.days }}</span><span class="flex-row-6">{{ groupedTime.hours }}</span
+        ><span class="flex-row-7">{{ groupedTime.minutes }}</span><span class="flex-row-8"></span
+        ><span class="flex-row-9">{{ groupedTime.seconds }}</span>
         </div>
         <div class="flex-row-a">
           <span class="days">Days</span><span class="seconds">Seconds</span
           ><span class="hours">Hours</span><span class="minutes">Minutes</span>
-          <button class="button">YES</button>
-          <button class="button">NO</button>
+          <button class="button" @click="onTaskFinish">YES</button>
+          <button class="button" @click="onCancel">NO</button>
         </div>
       </div>
     </div>
   </template>
   
-  <script></script>
+  <script setup>
+
+  import {finishTask} from "@/controllers/task";
+  import {taskStore} from "@/stores/taskStore";
+  import {useRoute, useRouter} from "vue-router";
+  import {getGroupedTimeRemaining, useCurrentTime} from "@/utils/task";
+  import {computed} from "vue";
+
+  const route = useRoute();
+
+  const router = useRouter();
+  const onTaskFinish = async () => {
+    await finishTask(task.tsk_id, taskStore.userId, new Date());
+    router.push('/')
+  }
+
+  const onCancel = () => {
+    router.back();
+  }
+
+  const currentTime = useCurrentTime();
+
+  const task = taskStore.userTasks.find(t => t.tsk_id === parseInt(route.params.timer_id, 10))
+
+
+  const groupedTime = computed(() => getGroupedTimeRemaining(task, currentTime.value))
+
+
+  </script>
   
   <style>
   

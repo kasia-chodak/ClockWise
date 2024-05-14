@@ -8,9 +8,9 @@
         <div class="ellipse2"></div>
         <div class="ellipse3"></div>
         <div class="ellipse4"></div>
-        <span class="flex-row">04</span><span class="flex-row-6">04</span
-        ><span class="flex-row-7">04</span><span class="flex-row-8">04</span
-        ><span class="flex-row-9">04</span>
+        <span class="flex-row">{{ groupedTime.days }}</span><span class="flex-row-6">{{ groupedTime.hours }}</span
+        ><span class="flex-row-7">{{ groupedTime.minutes }}</span><span class="flex-row-8"></span
+        ><span class="flex-row-9">{{ groupedTime.seconds }}</span>
       </div>
       <div class="flex-row-a">
         <span class="days">Days</span><span class="seconds">Seconds</span
@@ -19,30 +19,54 @@
       <div class="controls">
       <button @click="startTimer"><img src="../assets/Play.png" alt="Play"></button>
       <button @click="pauseTimer"><img src="../assets/Pause.png" alt="Pause"></button>
-      <button @click="resetTimer"><img src="../assets/Stop.png" alt="Reset"></button>
+      <button @click="finishTimer"><img src="../assets/Stop.png" alt="Reset"></button>
     </div>
     </div>
   </div>
 </template>
 
-<script></script>
+<script setup>
+import {taskStore} from "@/stores/taskStore";
+import {useRoute, useRouter} from "vue-router";
+import {getGroupedTimeRemaining, useCurrentTime} from "@/utils/task";
+import {computed} from "vue";
+
+const route = useRoute();
+const router = useRouter();
+
+const currentTime = useCurrentTime();
+
+const task = taskStore.userTasks.find(t => t.tsk_id === parseInt(route.params.timer_id, 10))
+
+
+const groupedTime = computed(() => getGroupedTimeRemaining(task, currentTime.value))
+
+const finishTimer = async () => {
+  router.push(`/${task.tsk_id}/end`)
+}
+
+</script>
 
 <style>
 
+body {
+  margin: 0px;
+  width: 100%;
+  height: 100%;
+}
+
+
 .main-container {
   position: relative;
-  width: 1920px;
-  height: 1080px;
+  width: 100%;
+  height: 100%;
   margin: 0 auto;
   background: #ffffff;
   overflow: hidden;
-
 }
 
 .rectangle {
   position: relative;
-  width: 1920px;
-  height: 898px;
   margin: -2px 0 0 -4px;
   font-size: 0px;
   background: #e5f0e8;
@@ -54,9 +78,9 @@
   align-items: flex-start;
   justify-content: center;
   position: relative;
-  width: 1108px;
+  width: 100%;
   height: 84px;
-  margin: 71px 0 0 406px;
+  margin: 71px 0 0 0;
   color: #000000;
   font-family: Gluten;
   font-size: 48px;
@@ -306,3 +330,5 @@
 }
 
 </style>
+
+

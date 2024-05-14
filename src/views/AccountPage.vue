@@ -4,20 +4,20 @@
         <div class="account-container">
             <img src="../assets/signup.png" alt="Sign up image" class="signup-image">
             <h2>Your account</h2>
+            <p class="username-text">{{ username }}</p> <!-- Display the username -->
             <div class="trackers-statistics-container">
                 <div class="white-box">
                     <p class="box-title">Your trackers</p>
                     <div class="trackers-layout">
                         <!-- Sample tracker items -->
-                        <div class="tracker-item">
-                            <p>Tracker 1</p>
+                        <div class="tracker-item" v-for="tracker in trackers" :key="tracker.tsk_id" :id="tracker.tsk_id" @click="seeTracker(tracker.tsk_id)" style="cursor:pointer;">
+                            <p>{{tracker.tsk_name}}</p>
                             <!-- Add more elements or data related to Tracker 1 -->
                         </div>
-                        <div class="tracker-item">
-                            <p>Tracker 2</p>
-                            <!-- Add more elements or data related to Tracker 2 -->
-                        </div>
                         <!-- Add more tracker items as needed -->
+                        <button @click="goToCreateTrackerPage" class="create-tracker-button">
+                        Create New Tracker
+                        </button>
                     </div>
                 </div>
                 <div class="white-box">
@@ -39,17 +39,34 @@
 <script>
 import PageTopPart from '@/components/PageTopPart.vue';
 import PageFooter from '@/components/PageFooter.vue';
+import {taskStore} from "@/stores/taskStore";
 
 export default {
     components: {
         PageTopPart,
         PageFooter
     },
-    data() {
+    props: {
+        username: {
+            type: String,
+            required: true
+        }
     },
-    methods: {
+  setup() {
+    return {
+      trackers: taskStore.userTasks
     }
+  },
+    methods: {
+    goToCreateTrackerPage() {
+      this.$router.push('/start_timer');
+    },
+      seeTracker(id) {
+      this.$router.push(`/${id}/view`)
+      }
+  }
 }
+
 </script>
 
 <style scoped>
@@ -121,10 +138,19 @@ export default {
 
 .tracker-item {
     background-color: #C7DECE;
-    padding: 20px;
+    padding: 5px;
     border-radius: 30px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
+}
+
+.create-tracker-button {
+    background-color: #C7DECE;
+    padding: 10px;
+    border-radius: 30px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    cursor: pointer;
 }
 
 .statistics-box {

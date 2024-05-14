@@ -1,3 +1,5 @@
+import {formatISO} from "date-fns";
+
 export async function createTask(name, date, userId) {
     const response = await fetch('http://localhost:5000/api/task', {
         method: 'POST',
@@ -35,7 +37,7 @@ export async function finishTask(taskId, userId, date) {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ taskId, date, userId }),
+        body: JSON.stringify({ taskId, date: formatISO(date), userId }),
     });
 
     if (!response.ok) {

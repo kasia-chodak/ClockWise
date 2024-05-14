@@ -21,6 +21,7 @@
 import PageTopPart from '@/components/PageTopPart.vue';
 import PageFooter from '@/components/PageFooter.vue';
 import {login as loginFunc} from '@/controllers/signup'
+import {taskStore} from "@/stores/taskStore";
 
 export default {
   components: {
@@ -42,6 +43,8 @@ export default {
           return;
         }
         localStorage.setItem('userId', res.usr_id);
+        taskStore.loadUserId();
+        taskStore.loadUserTasks();
 
         this.$router.push(`/${res.usr_id}/account`);
       }).catch(err => console.log(err));

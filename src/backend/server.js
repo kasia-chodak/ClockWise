@@ -89,8 +89,9 @@ app.put('/api/task', async (req, res) => {
 app.get('/api/tasks/:userId', async (req, res) => {
     const {userId} = req.params;
 
-    db.all('SELECT * FROM Tasks WHERE tsk_usr_id = ?', [userId], function (err, results) {
+    db.all('SELECT * FROM Tasks WHERE tsk_user_id = ? AND tsk_finish_date IS NULL ORDER BY tsk_execution_date ', [userId], function (err, results) {
         if (err) {
+            console.error(err)
             res.sendStatus(500);
             console.error('Error getting tasks for user from the db')
             return;

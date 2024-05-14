@@ -9,7 +9,7 @@
               <br>
               <h1>Let's start a new journey together!</h1>
               <br>
-              </div>
+            </div>
             <form @submit.prevent="submit">
               <div>
                 <input type="text" v-model="missionName" placeholder="Name your mission" required>
@@ -21,7 +21,7 @@
                 <button type="submit" class="cta-button">Let's go!</button>
               </div>
             </form>
-            </div>
+          </div>
         </div>
       </article>
     </div>
@@ -30,39 +30,38 @@
 </template>
 
 <script>
-import { ref } from 'vue';
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css';
-import { createTask } from "@/controllers/task";
+import {createTask} from "@/controllers/task";
 
 export default {
-  components: { VueDatePicker },
-  setup() {
-    const missionName = ref("");
-    const date = ref(null);
-    const userId = localStorage.getItem('userId');
-
-    const submit = () => {
-      if (missionName.value && date.value !== null) {
-        const formattedDate = new Date(date.value);
+  components: {VueDatePicker},
+  data() {
+    return {
+      missionName: '',
+      date: null,
+    }
+  },
+  methods: {
+    submit() {
+      const userId = localStorage.getItem('userId');
+      const { missionName, date } = this;
+      if (missionName && date !== null) {
+        const formattedDate = new Date(date);
         const missionData = {
-          name: missionName.value,
+          name: missionName,
           date: formattedDate.toISOString()
         };
-        createTask(missionData.name, missionData.date, userId).then(() => {
+        createTask(missionData.name, missionData.date, userId).then((res) => {
           console.log("Mission data inserted into database:", missionData);
+          const id = res.id;
+          this.$router.push(`/${id}/view`)
         });
 
       } else {
         alert("Please fill in all fields.");
       }
-    };
-
-    return {
-      missionName,
-      date,
-      submit
-    };
+    }
   }
 };
 </script>
