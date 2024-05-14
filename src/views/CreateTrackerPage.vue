@@ -5,11 +5,9 @@
       <div class="light-green-box">
         <h2>Your Mission</h2>
         <input type="text" v-model="mission" class="white-box" placeholder="Enter your mission">
-
         <h2>End Time</h2>
-        <input type="datetime-local" v-model="endTime" class="white-box">
-        
-        <button @click="startClock">Start the Clock</button>
+        <input type="datetime-local" v-model="endTimeInput" class="white-box">
+        <button @click="startTimer">Start the Timer</button>
       </div>
     </div>
     <PageFooter />
@@ -28,17 +26,28 @@ export default {
   data() {
     return {
       mission: '',
-      endTime: '' // This will store the selected end time
+      endTimeInput: '', // This will store the selected end time as a string
     };
   },
   methods: {
-    startClock() {
-      // Handle starting the clock here
-      // You can initiate the countdown timer or perform any other actions
-      console.log('Clock started');
+    startTimer() {     
+      console.log("Start Timer button clicked");
+      // Convert endTimeInput to a date object
+      const endTime = new Date(this.endTimeInput);
+      // Emit the mission and end time data when the "Start the Timer" button is clicked
+      this.$emit('start-timer', {
+        mission: this.mission,
+        endTime: endTime // Pass endTime as a date object
+      });
+
+      // navigate to the TimerviewPage directly
+      this.$router.push('/timerview');
+      }
     }
+    
   }
-};
+
+
 </script>
 
 <style scoped>
