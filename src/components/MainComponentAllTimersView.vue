@@ -3,8 +3,9 @@
     <div class="container">
       <div class="heading">
         <p>All trackers</p>
-        <div class="trackers-container">
-          <div class="tracker" v-for="(n, index) in 4" :key="n" :style="getTrackerPosition(index)">
+      </div>
+      <div class="trackers-container">
+          <div class="tracker">
             <div class="circle">
               <span>{{ n }}</span>
             </div>
@@ -12,45 +13,41 @@
               <p>Zadanie{{ n }}</p>
             </div>
           </div>
-        </div>  
-      </div>
+          <div class="tracker">
+            <div class="label">
+              <p>Zadanie{{ n }}</p>
+            </div>
+            <div class="circle">
+              <span>{{ n }}</span>
+            </div>
+          </div>
+          <div class="tracker">
+            <div class="circle">
+              <span>{{ n }}</span>
+            </div>
+            <div class="label">
+              <p>Zadanie{{ n }}</p>
+            </div>
+          </div>
+          <div class="tracker">
+            <div class="label">
+              <p>Zadanie{{ n }}</p>
+            </div>
+            <div class="circle">
+              <span>{{ n }}</span>
+            </div>
+          </div>
+        </div>
     </div>  
   </body>
 </template>
-
-<script setup>
-const getTrackerPosition = (index) => {
-  if (index === 0) {
-    return {
-      top: '121px',
-      left: '152px',
-    };
-  } else if (index === 1) {
-    return {
-      top: '121px',
-      left: '1021px',
-    };
-  } else if (index === 2) {
-    return {
-      top: '477px',
-      left: '509px',
-    };
-  } else {
-    return {
-      top: '477px',
-      left: '1459px',
-    };
-  }
-}
-</script>
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Gluten:wght@100..900&display=swap');
 
 
 body {
-  position: relative;
-  background-color: #E5F0E8;
+  position: absolute;
   width: 100%;
   height: 100%;
   margin: 0;
@@ -61,13 +58,13 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: #E5F0E8;
 }
 
 .container {
-  width: 100%;
+  position: relative;
   margin: 0 auto;
   padding: 25px;
-  background-color: #E5F0E8; /* Dodane tło koloru #E5F0E8 */
 }
 
 .heading {
@@ -79,14 +76,11 @@ body {
 
 .trackers-container {
   position: relative;
-  height: 100%;
-  width: 100%;
-  background-color: #E5F0E8; /* Dodane tło koloru #E5F0E8 */
+  display: flex;
+  flex-direction: row;
 }
 
 .tracker {
-  position: absolute;
-  display: flex;
   align-items: center;
   padding: 20px;
 }
