@@ -17,7 +17,7 @@
         <span class="days">Days</span><span class="seconds">Seconds</span
         ><span class="hours">Hours</span><span class="minutes">Minutes</span>
       </div>
-      <div class="controls">
+      <div class="buttons">
         <button class="button">YES</button>
         <button class="button">NO</button>
       </div>
