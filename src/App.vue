@@ -1,14 +1,14 @@
 <template>
-  <InitPage/>
+  <TimerviewPage/>
 </template>
 
 <script>
-import InitPage from "@/views/InitPage.vue";
+import TimerviewPage from "@/views/TimerviewPage.vue";
 
 export default {
   name: 'App',
   components: {
-    InitPage
+    TimerviewPage
   }
 }
 </script>

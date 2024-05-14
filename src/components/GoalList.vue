@@ -43,16 +43,12 @@ export default {
 <style>
 
 .container {
-  position: fixed;
-  top: 80px;
-  left: 0;
   background-color: #7da193;
   z-index: 1000;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  
 }
 
 .goal-list {
@@ -77,7 +73,7 @@ export default {
 .goal-list button {
   margin: 0 5px;
   padding: 10px 15px;
-  background: white;
+  background: #4D6A5F;
   border: 1px solid #ccc;
   border-radius: 5px;
   cursor: pointer;
@@ -86,11 +82,12 @@ export default {
 
 ul {
   list-style: none;
+  
   padding: 0;
 }
 
 li {
-  background: white;
+  background: #C7DECE;
   margin-bottom: 5px;
   padding: 10px;
   border-radius: 5px;
