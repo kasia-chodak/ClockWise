@@ -3,19 +3,21 @@
     <div class="rectangle">
       <span class="time-remaining"
         >Time remaining to call the client to discuss the new project</span>
-        ><span class="completed-goal">HAVE YOU COMPLETED YOUR GOAL?</span>
+      <span class="completed-goal">HAVE YOU COMPLETED YOUR GOAL?</span>
       <div class="timers">
         <div class="ellipse1"></div>
         <div class="ellipse2"></div>
         <div class="ellipse3"></div>
         <div class="ellipse4"></div>
-        <span class="flex-row">04</span><span class="flex-row-6">04</span
-        ><span class="flex-row-7">04</span><span class="flex-row-8">04</span
-        ><span class="flex-row-9">04</span>
+        <span class="flex-row">00</span><span class="flex-row-6">00</span
+        ><span class="flex-row-7">00</span><span class="flex-row-8">00</span
+        ><span class="flex-row-9">00</span>
       </div>
       <div class="flex-row-a">
         <span class="days">Days</span><span class="seconds">Seconds</span
         ><span class="hours">Hours</span><span class="minutes">Minutes</span>
+      </div>
+      <div class="controls">
         <button class="button">YES</button>
         <button class="button">NO</button>
       </div>
@@ -27,21 +29,24 @@
 
 <style>
 
+body {
+  margin: 0px;
+  width: 100%;
+  height: 100%;
+}
+
 
 .main-container {
   position: relative;
-  width: 1920px;
-  height: 1080px;
+  width: 100%;
+  height: 100%;
   margin: 0 auto;
   background: #ffffff;
   overflow: hidden;
-
 }
 
 .rectangle {
   position: relative;
-  width: 1920px;
-  height: 898px;
   margin: -2px 0 0 -4px;
   font-size: 0px;
   background: #e5f0e8;
@@ -53,9 +58,9 @@
   align-items: flex-start;
   justify-content: center;
   position: relative;
-  width: 1108px;
+  width: 100%;
   height: 84px;
-  margin: 71px 0 0 406px;
+  margin: 71px 0 0 0;
   color: #000000;
   font-family: Gluten;
   font-size: 48px;
@@ -64,24 +69,6 @@
   text-align: center;
   z-index: 25;
 }
-
-.completed-goal {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  width: 1301px;
-  height: 120px;
-  margin: 21px 0 0 350px;
-  color: #000000;
-  font-family: Gluten;
-  font-size: 64px;
-  font-weight: 400;
-  line-height: 56.48px;
-  text-align: center;
-  z-index: 45;
-}
-
 .timers {
   position: relative;
   width: 1570px;
@@ -310,16 +297,33 @@
   border-radius: 30px;
   background-color: #4D6A5F;
   color: #FFFFFF;
-  font-family: "gluten medium", sans-serif;
-  font-size: 24px;
+  font-family: Gluten;
+  font-size: 36px;
   text-align: center;
   line-height: 83px;
   text-decoration: none;
   position: relative; 
   z-index: 2;
   margin: 50px;
+  border: none;
+  cursor: pointer;
+}
+
+.completed-goal {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  height: 120px;
+  margin: 25px 0 0 0;
+  color: #000000;
+  font-family: Gluten;
+  font-size: 48px;
+  font-weight: 400;
+  line-height: 42.36px;
+  text-align: center;
+  z-index: 25;
 }
 
 </style>
-
-
