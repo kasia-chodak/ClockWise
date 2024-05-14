@@ -29,21 +29,24 @@
 
 <style>
 
+body {
+  margin: 0px;
+  width: 100%;
+  height: 100%;
+}
+
 
 .main-container {
   position: relative;
-  width: 1920px;
-  height: 1080px;
+  width: 100%;
+  height: 100%;
   margin: 0 auto;
   background: #ffffff;
   overflow: hidden;
-
 }
 
 .rectangle {
   position: relative;
-  width: 1920px;
-  height: 898px;
   margin: -2px 0 0 -4px;
   font-size: 0px;
   background: #e5f0e8;
@@ -55,9 +58,9 @@
   align-items: flex-start;
   justify-content: center;
   position: relative;
-  width: 1108px;
+  width: 100%;
   height: 84px;
-  margin: 71px 0 0 406px;
+  margin: 71px 0 0 0;
   color: #000000;
   font-family: Gluten;
   font-size: 48px;

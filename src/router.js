@@ -1,12 +1,12 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import InitPage from "@/views/InitPage.vue";
+import TimerviewPage from './views/TimerviewPage.vue';
 
 export default createRouter({
     history: createWebHistory(),
     routes: [
         {
             path: "/",
-            component: InitPage
+            component: TimerviewPage
         }
     ]
 })
