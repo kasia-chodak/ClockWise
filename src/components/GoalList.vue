@@ -65,24 +65,30 @@ export default {
 
 .your-goals {
   margin-right: 10px;
-  font-size: 24px;
+  font-family: "gluten thin", sans-serif;
+  font-size: 25px;
   font-weight: bold;
   color: #000000;
 }
 
 .goal-list button {
+  color: white;
+  height: 25px;
+  width: 25px;
   margin: 0 5px;
-  padding: 10px 15px;
+  padding: 15px;
   background: #4D6A5F;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border: 1px solid #30433c;
+  border-radius: 50%;
   cursor: pointer;
-
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  font-size: 20px; 
 }
 
 ul {
   list-style: none;
-  
   padding: 0;
 }
 
@@ -90,6 +96,6 @@ li {
   background: #C7DECE;
   margin-bottom: 5px;
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 30px;
 }
 </style>
