@@ -4,7 +4,6 @@
     <button class="user_icon_button"><img src="../assets/user.png" height="50px" width="50px"></button>
   </header>
 </template>
-
 <script setup>
 
 </script>
@@ -47,7 +46,10 @@ header {
   width: 50px;
   height: 50px;
   padding-right: 100px;
+  align-self: flex-end; /* Align to the bottom of the header */
+  margin-left: auto; /* Push to the right */
 }
+
 
 .user_icon_button:hover {
   transform: scale(1.1);

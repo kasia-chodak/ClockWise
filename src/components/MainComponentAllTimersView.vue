@@ -4,12 +4,12 @@
     <div class="heading">
       <p>All trackers</p>
       <div class="trackers-container">
-        <div class="tracker" v-for="(n, index) in 4" :key="n" :style="getTrackerPosition(index)">
-          <div class="circle">
-            <span>{{ n }}</span>
+        <div class="tracker" v-for="(task, index) in taskStore.userTasks.slice(0, 4)" :key="task.tsk_id" :style="getTrackerPosition(index)">
+          <div class="circle" :id="task.tsk_id" @click="onTimerClick">
+            <span style="font-size: 2rem">{{ computeTimeLeft(task, currentTime) }}</span>
           </div>
           <div class="label">
-            <p>Zadanie{{ n }}</p>
+            <p>Zadanie: {{ task.tsk_name }}</p>
           </div>
         </div>
       </div>
@@ -19,6 +19,19 @@
 </template>
 
 <script setup>
+import { taskStore } from "@/stores/taskStore";
+import {computeTimeLeft, useCurrentTime} from "@/utils/task";
+import {useRouter} from "vue-router";
+
+const router = useRouter();
+const currentTime = useCurrentTime();
+
+
+
+function onTimerClick(event) {
+  router.push(`/${event.target.id}/view`)
+}
+
 const getTrackerPosition = (index) => {
   if (index === 0) {
     return {
@@ -42,6 +55,7 @@ const getTrackerPosition = (index) => {
     };
   }
 }
+
 </script>
 
 <style scoped>
