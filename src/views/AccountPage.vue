@@ -9,12 +9,9 @@
                 <div class="white-box">
                     <p class="box-title">Your trackers</p>
                     <div class="trackers-layout">
-                        <!-- Sample tracker items -->
                         <div class="tracker-item" v-for="tracker in trackers" :key="tracker.tsk_id" :id="tracker.tsk_id" @click="seeTracker(tracker.tsk_id)" style="cursor:pointer;">
                             <p>{{tracker.tsk_name}}</p>
-                            <!-- Add more elements or data related to Tracker 1 -->
                         </div>
-                        <!-- Add more tracker items as needed -->
                         <button @click="goToCreateTrackerPage" class="create-tracker-button">
                         Create New Tracker
                         </button>
@@ -24,12 +21,14 @@
                     <p class="box-title">Your statistics</p>
                     <!-- statistics layout -->
                     <div class="statistics-link-container">
-                        <router-link to="/statistics" class="cta-button view-statistics-button">View Statistics</router-link>
+                        <router-link to="/:user_id/statistics" class="cta-button view-statistics-button">View Statistics</router-link>
+                        <!-- zmiana - button 'view statistics' przekiwrowuje do AccountStatistics page -->
                     </div>
                 </div>
             </div>
             <div class="button-container">
-                <button type="submit" class="cta-button">Show All Trackers</button>
+                <router-link to="/all_timers" class="cta-button">Show All Trackers</router-link>
+                <!-- zmiana - button przekiwrowuje do alltimersview page -->
             </div>
         </div>
         <PageFooter />
@@ -151,6 +150,8 @@ export default {
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
     text-align: center;
     cursor: pointer;
+    font: 500 15px Gluten, "Courier New", sans-serif;
+    color: #2f2f2f;
 }
 
 .statistics-box {
@@ -179,6 +180,8 @@ export default {
     font: 500 20px Gluten, "Courier New", sans-serif;
     border: none;
     cursor: pointer;
+    text-decoration: none; /* Remove underline */
+    display: inline-block; 
 }
 
 .page-footer {
@@ -190,3 +193,5 @@ export default {
     width: 100%;
 }
 </style>
+
+

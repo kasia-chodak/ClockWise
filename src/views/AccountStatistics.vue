@@ -6,20 +6,30 @@
             <h2>Your Statistics</h2>
             <div class="trackers-statistics-container">
                 <div class="white-box">
+                    <p v-if="statisticsLoading">Loading...</p>
+                    <div v-else>
+                    <p>Tasks completed on time: {{ statistics.onTimeCount }}</p>
+                    <p>Late tasks: {{ statistics.lateCount }}</p>
+                    <p>Tasks not finished: {{ statistics.notFinishedCount }}</p>
+                    <p>Total tasks: {{ statistics.totalCount }}</p>
                     <!-- content -->
                 </div>
             </div>
         </div>
-        <PageFooter />
         <div class="back-button-container">
-            <router-link to="/account" class="cta-button back-button">Back</router-link>
+            <router-link to="/:user_id/account" class="cta-button back-button">Back to My Account</router-link>
+            <!-- zmiana /account na /:user.. tak jak jest w router.js - tak żeby button 'back' przekierowywyal z powrotem do accountpage -->
         </div>
+        </div>
+        <PageFooter />
     </div>
 </template>
 
 <script>
 import PageTopPart from '@/components/PageTopPart.vue';
 import PageFooter from '@/components/PageFooter.vue';
+import { getUserCompletionStatistics } from "@/controllers/task";
+import { taskStore } from "@/stores/taskStore";
 
 export default {
     components: {
@@ -27,9 +37,32 @@ export default {
         PageFooter
     },
     data() {
-        return {};
+    return {
+      statistics: {
+        onTimeCount: 0,
+        lateCount: 0,
+        notFinishedCount: 0,
+        totalCount: 0
+      },
+      statisticsLoading: true
+    };
     },
-    methods: {}
+
+   methods: {
+    async fetchStatistics() {
+        try {
+            const userId = taskStore.userId;
+            this.statistics = await getUserCompletionStatistics(userId);
+            this.statisticsLoading = false;
+        } catch (error) {
+            console.error("Error fetching statistics:", error);
+        }
+        }
+    },
+
+    mounted() {
+        this.fetchStatistics();
+    }
 }
 </script>
 
