@@ -7,8 +7,8 @@
         <img src="../assets/contphoto.png" alt="Continue Photo">
         <div>
           <p class="cont_question">Do you want to continue?</p>
-          <button class="button">Go back to the clock</button>
-          <button class="button">Continue</button>
+          <button class="button" @click="goBackToClock">Go back to the clock</button>
+          <router-link to="/fail" class="button fail" @click="continueTask">Give Up</router-link>
         </div>
       </div>
     </div>
@@ -17,6 +17,17 @@
 </template>
 
 <script setup>
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+
+const goBackToClock = () => {
+  router.back();
+};
+
+const continueTask = () => {
+  router.push('/fail'); // Redirect to failure page
+};
 
 </script>
 

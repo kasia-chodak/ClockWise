@@ -15,6 +15,7 @@
                 <br>
               </div>
               <button class="cta-button">Make a new clock</button>
+              <button @click="backToAccount" class="back-button">Back to My Account</button>
             </div>
           </div>
         </article>
@@ -27,11 +28,21 @@
 <script>
 import PageTopPart from "@/components/PageTopPart.vue";
 import PageFooter from "@/components/PageFooter.vue";
+import { useRouter } from "vue-router";
 
 export default {
   components: {
     PageTopPart,
     PageFooter
+  },
+  setup() {
+    const router = useRouter();
+
+    const backToAccount = () => {
+      router.push(`/:user_id/account`);
+    };
+
+    return { backToAccount };
   }
 }
 </script>
@@ -104,7 +115,7 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 50px 60px;
+  padding: 120px 60px;
 }
 
 @media (max-width: 991px) {
@@ -137,16 +148,17 @@ export default {
 }
 
 .cta-button {
-  border-radius: 30px;
+  border-radius: 40px;
   background-color: #4d6a5f;
   align-self: center;
   margin-top: 46px;
   color: #fff;
   justify-content: center;
   padding: 22px 56px;
-  font: 500 36px Gluten, "Courier New", sans-serif;
+  font: 500 30px Gluten, "Courier New", sans-serif;
   border: none;
   cursor: pointer;
+  margin-bottom: 5%;
 }
 
 @media (max-width: 991px) {

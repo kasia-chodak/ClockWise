@@ -63,86 +63,85 @@ body {
 }
 
 .main-container {
-  height: 100vh; /* Adjust as needed */
+  display: flex;
   flex-direction: column;
-  
+  min-height: 100vh;
 }
 
 .rectangle {
+  flex: 1;
   width: 100%;
-  max-width: 1150px;
-  height: 65%;
-  padding: 180px;
+  max-width: 1500px;
+  padding: 50px 20px;
   background: #e5f0e8;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .rectangle h2 {
-    text-align: center;
-    font-family: "Gluten";
-    font-weight: 400;
-    font-size: 40px;
-    margin-top: auto;
+  text-align: center;
+  font-family: "Gluten";
+  font-weight: 400;
+  font-size: 40px;
 }
 
 .timers {
+  margin: 30px 0;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-wrap: wrap; /* Ensure circles wrap to the next line */
-  width: 100%; /* Ensure the timers take up the full width */
-  max-width: 1160px; /* Adjust as needed */
-  margin-bottom: 5%;
+  flex-wrap: wrap;
+  width: 100%;
 }
 
 .circle {
   display: inline-block; /* Ensure each tracker is a block element */
-  margin: 40px; /* Adjust margin as needed */
+  margin: 20px; /* Adjust margin as needed */
 }
 
 
 .inner-circle {
-  width: 190px;
-  height: 190px;
+  width: 150px;
+  height: 150px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #d0eaaf, #2d6612); /* Green gradient */
+  background: linear-gradient(135deg, #d0eaaf, #2d6612);
   box-shadow: 0 8px 8px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 80px;
+  font-size: 50px;
   font-family: "Gluten";
-  color: white; /* Ensure the text is visible */
-  margin-bottom: 5%;
+  color: white;
 }
 
 .time-label {
-  font-size: 40px;
+  font-size: 20px;
   font-family: "Gluten";
 }
 
 .controls {
   display: flex;
   justify-content: center;
-  margin-bottom: 2%; 
+  margin-bottom: 20px;
 }
 
 .controls button {
   margin: 0 10px;
-  padding: 20px 10px;
+  padding: 10px;
   background-color: transparent;
   border: none;
   cursor: pointer;
-  
 }
 
 .controls button img {
-  width: 80px; 
+  width: 60px; 
 }
 
 .back-button {
-  margin-bottom: 50%;
   border-radius: 30px;
   background-color: #4d6a5f;
   color: #fff;
@@ -150,8 +149,9 @@ body {
   font: 500 20px Gluten, "Courier New", sans-serif;
   border: none;
   cursor: pointer;
-  text-decoration: none; /* Remove underline */
-  display: inline-block; /* Ensure it's treated as an inline block element */
+  text-decoration: none;
+  display: inline-block;
+  margin-top: 20px;
 }
 
 </style>

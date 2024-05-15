@@ -21,4 +21,14 @@ export default {
 </script>
 
 <style scoped>
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+page-footer {
+  margin-top: auto; /* Pushes the footer to the bottom */
+}
 </style>
