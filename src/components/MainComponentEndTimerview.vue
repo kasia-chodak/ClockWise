@@ -21,9 +21,9 @@
         </div>
       </div>
     </div>
-  </template>
+</template>
   
-  <script setup>
+<script setup>
 
   import {finishTask} from "@/controllers/task";
   import {taskStore} from "@/stores/taskStore";
@@ -48,13 +48,10 @@
 
   const task = taskStore.userTasks.find(t => t.tsk_id === parseInt(route.params.timer_id, 10))
 
-
   const groupedTime = computed(() => getGroupedTimeRemaining(task, currentTime.value))
-
-
-  </script>
+</script>
   
-  <style>
+<style>
   
   .main-container {
     position: relative;
@@ -348,6 +345,6 @@
     margin: 50px;
   }
   
-  </style>
+</style>
   
   

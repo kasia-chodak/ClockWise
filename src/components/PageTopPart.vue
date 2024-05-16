@@ -1,11 +1,23 @@
 <template>
   <header>
     <a href="/" class="brand_name">ClockWise</a>
-    <button class="user_icon_button"><img src="../assets/user.png" height="50px" width="50px"></button>
+    <button class="user_icon_button" @click="goToAccountPage"><img src="../assets/user.png" height="50px" width="50px" alt="User"></button>
   </header>
 </template>
-<script setup>
 
+<script>
+export default {
+  data() {
+    return {
+      userId: 1
+    }
+  },
+  methods: {
+    goToAccountPage() {
+      this.$router.push(`/${this.userId}/account`);
+    }
+  }
+}
 </script>
 
 <style scoped>
