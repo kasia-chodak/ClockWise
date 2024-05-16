@@ -2,7 +2,7 @@
   <div class="main-container">
     <div class="rectangle">
       <span class="time-remaining"
-        >Time remaining to call the client to discuss the new project</span>
+        >{{task.tsk_name}}</span>
       <div class="timers">
         <div class="ellipse1"></div>
         <div class="ellipse2"></div>
@@ -29,12 +29,16 @@
 import {taskStore} from "@/stores/taskStore";
 import {useRoute, useRouter} from "vue-router";
 import {getGroupedTimeRemaining, useCurrentTime} from "@/utils/task";
-import {computed} from "vue";
+import {computed, onMounted} from "vue";
 
 const route = useRoute();
 const router = useRouter();
 
 const currentTime = useCurrentTime();
+
+onMounted(() => {
+  taskStore.loadUserTasks()
+})
 
 const task = taskStore.userTasks.find(t => t.tsk_id === parseInt(route.params.timer_id, 10))
 

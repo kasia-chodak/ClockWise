@@ -52,7 +52,7 @@ export default {
           name: missionName,
           date: formattedDate.toISOString()
         };
-        createTask(missionData.name, missionData.date, userId).then((res) => {
+        createTask(missionData.name, missionData.date, userId).then(async (res) => {
           console.log("Mission data inserted into database:", missionData);
           const id = res.id;
           this.$router.push(`/${id}/view`)
