@@ -2,8 +2,8 @@
     <div class="main-container">
       <div class="rectangle">
         <span class="time-remaining"
-          >Time remaining to call the client to discuss the new project</span>
-          ><span class="completed-goal">HAVE YOU COMPLETED YOUR GOAL?</span>
+          >{{taskStore.viewedTask && taskStore.viewedTask.tsk_name}}</span>
+          <span class="completed-goal">HAVE YOU COMPLETED YOUR GOAL?</span>
         <div class="timers">
           <div class="ellipse1"></div>
           <div class="ellipse2"></div>
@@ -14,8 +14,8 @@
         ><span class="flex-row-9">{{ groupedTime.seconds }}</span>
         </div>
         <div class="flex-row-a">
-          <span class="days">Days</span><span class="seconds">Seconds</span
-          ><span class="hours">Hours</span><span class="minutes">Minutes</span>
+          <span class="days">Days</span><span class="seconds">Seconds</span>
+          <span class="hours">Hours</span><span class="minutes">Minutes</span>
           <button class="button" @click="onTaskFinish">YES</button>
           <button class="button" @click="onCancel">NO</button>
         </div>
