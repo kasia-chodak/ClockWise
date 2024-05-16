@@ -55,7 +55,7 @@ const finishTimer = async () => {
 <style>
 
 body {
-  margin: 0px;
+  margin: 0;
   width: 100%;
   height: 100%;
 }
