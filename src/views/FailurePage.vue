@@ -14,7 +14,7 @@
                 <img src="../assets/no_time.jpg" alt="No time left!">
                 <br>
               </div>
-              <button class="cta-button">Make a new clock</button>
+              <button @click="backtoNewClock" class="cta-button">Make a new clock</button>
               <button @click="backToAccount" class="back-button">Back to My Account</button>
             </div>
           </div>
@@ -42,7 +42,11 @@ export default {
       router.push(`/:user_id/account`);
     };
 
-    return { backToAccount };
+    const backtoNewClock = () => {
+      router.push('/start_timer');
+    };
+
+    return { backToAccount, backtoNewClock };
   }
 }
 </script>

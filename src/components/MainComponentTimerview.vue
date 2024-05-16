@@ -36,21 +36,43 @@
 import {taskStore} from "@/stores/taskStore";
 import {useRoute, useRouter} from "vue-router";
 import {getGroupedTimeRemaining, useCurrentTime} from "@/utils/task";
-import { computed} from "vue";
+
+import { ref, computed, onMounted } from 'vue';
+import { getTaskById } from '@/controllers/task'; 
 
 const route = useRoute();
 const router = useRouter();
-
+const task = ref(null);
 const currentTime = useCurrentTime();
 
-const task = taskStore.userTasks.find(t => t.tsk_id === parseInt(route.params.timer_id, 10))
+const fetchTask = async () => {
+  const taskId = parseInt(route.params.timer_id, 10);
+  try {
+    // Check if the task is already in the store
+    let fetchedTask = taskStore.userTasks.find(t => t.tsk_id === taskId);
+    if (!fetchedTask) {
+      // Fetch the task if not found in the store
+      fetchedTask = await getTaskById(taskId);
+      taskStore.userTasks.push(fetchedTask);
+    }
+    task.value = fetchedTask;
+  } catch (error) {
+    console.error('Failed to fetch task:', error);
+  }
+};
 
+onMounted(() => {
+  taskStore.loadUserId();
+  taskStore.loadUserTasks().then(fetchTask);
+});
 
-const groupedTime = computed(() => getGroupedTimeRemaining(task, currentTime.value))
+const groupedTime = computed(() => getGroupedTimeRemaining(task.value, currentTime.value));
 
 const finishTimer = async () => {
-  router.push(`/${task.tsk_id}/end`)
-}
+  if (task.value) {
+    router.push(`/${task.value.tsk_id}/end`);
+  }
+};
 
 </script>
 

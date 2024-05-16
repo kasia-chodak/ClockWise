@@ -9,8 +9,8 @@
         <!-- Wyświetlanie zdjęć kotów -->
         <img v-for="(cat, index) in catImages" :key="index" :src="cat.url" alt="Kot" width="629" height="485">
       </div>
-      <a href="/AllTimersView" class="button">Make a new clock</a>
-      <a href="/:user_id/account" class="back-button">Back to My Account</a>
+      <router-link to="/start_timer" class="button">Make a new clock</router-link>
+      <router-link :to="`/${userId}/account`" class="back-button">Back to My Account</router-link>
     </div>
   </div>
   </body>
@@ -18,8 +18,12 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
+import { useRoute } from 'vue-router';
 
 const catImages = ref([]);
+const route = useRoute();
+const userId = ref(route.params.user_id);
+
 
 onMounted(async () => {
   try {

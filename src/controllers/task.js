@@ -14,6 +14,7 @@ export async function createTask(name, date, userId) {
     }
 
     const data = await response.json();
+
     return data;
 }
 
@@ -51,6 +52,21 @@ export async function finishTask(taskId, userId, date) {
 // result: {onTimeCount, lateCount, notFinishedCount, totalCount}
 export async function getUserCompletionStatistics(userId) {
     const response = await fetch(`http://localhost:5000/api/tasks/${userId}/statistics`, {
+        method: 'GET'
+    });
+
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data;
+}
+
+
+//NEW: If getTaskById doesn't exist yet, add it to your task.js controller file
+export async function getTaskById(taskId) {
+    const response = await fetch(`http://localhost:5000/api/task/${taskId}`, {
         method: 'GET'
     });
 
