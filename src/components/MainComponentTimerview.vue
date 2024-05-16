@@ -2,7 +2,7 @@
   <div class="main-container">
     <div class="rectangle">
       <span class="time-remaining"
-        >{{task.tsk_name}}</span>
+        >{{taskStore.viewedTask && taskStore.viewedTask.tsk_name}}</span>
       <div class="timers">
         <div class="ellipse1"></div>
         <div class="ellipse2"></div>
@@ -37,16 +37,17 @@ const router = useRouter();
 const currentTime = useCurrentTime();
 
 onMounted(() => {
-  taskStore.loadUserTasks()
+  taskStore.loadUserTasks().then(() => {
+    taskStore.setViewedTask(parseInt(route.params.timer_id, 10))
+  })
+
 })
 
-const task = taskStore.userTasks.find(t => t.tsk_id === parseInt(route.params.timer_id, 10))
 
-
-const groupedTime = computed(() => getGroupedTimeRemaining(task, currentTime.value))
+const groupedTime = computed(() => getGroupedTimeRemaining(taskStore.viewedTask, currentTime.value))
 
 const finishTimer = async () => {
-  router.push(`/${task.tsk_id}/end`)
+  router.push(`/${taskStore.viewedTask.tsk_id}/end`)
 }
 
 </script>

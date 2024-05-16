@@ -92,10 +92,12 @@ app.get('/api/tasks/:userId', async (req, res) => {
     db.all('SELECT * FROM Tasks WHERE tsk_user_id = ? AND tsk_finish_date IS NULL ORDER BY tsk_execution_date ', [userId], function (err, results) {
         if (err) {
             console.error(err)
+
             res.sendStatus(500);
             console.error('Error getting tasks for user from the db')
             return;
         }
+        console.log(results)
         res.status(200).json({
             results,
         });

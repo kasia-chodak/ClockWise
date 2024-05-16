@@ -7,17 +7,21 @@ export const taskStore = reactive({
     setUserTasks(tasks) {
         this.userTasks = tasks;
     },
-    loadUserTasks() {
+    async loadUserTasks() {
         if (!this.userId) {
             return;
         }
-        getUserTasks(this.userId).catch(() => {
+        await getUserTasks(this.userId).catch(() => {
             this.userTasks = [];
         })
     },
     loadUserId() {
         this.userId = localStorage.getItem('userId');
     },
+    viewedTask: null,
+    setViewedTask(taskId) {
+        this.viewedTask = this.userTasks.find(t => t.tsk_id === taskId)
+    }
 })
 
 async function getUserTasks(userId) {

@@ -36,7 +36,8 @@
   const router = useRouter();
   const onTaskFinish = async () => {
     await finishTask(task.tsk_id, taskStore.userId, new Date());
-    router.push('/')
+    await taskStore.loadUserTasks();
+    router.push(`/success`)
   }
 
   const onCancel = () => {
