@@ -2,8 +2,9 @@
 <template>
   <div class="main-container">
     <div class="rectangle">
-      <h2>Time remaining to: {{ task.tsk_name }}</h2>
-      <div class="timers">
+      <h2 v-if="task">Time remaining to: {{ task.tsk_name }}</h2>
+      <h2 v-else>Task not found</h2>
+      <div class="timers" v-if="task">
         <div class="circle">
           <div class="inner-circle">{{ groupedTime.days }}</div>
           <span class="time-label">Days</span>
@@ -26,7 +27,7 @@
       <button @click="pauseTimer"><img src="../assets/Pause.png" alt="Pause"></button>
       <button @click="finishTimer"><img src="../assets/Stop.png" alt="Reset"></button>
     </div>
-    <router-link :to="`/${task.user_id}/account`" class="back-button">Back to My Account</router-link> <!-- Dynamic user_id -->
+    <router-link v-if="task" :to="`/${task.user_id}/account`" class="back-button">Back to My Account</router-link>
     </div>
   </div>
 </template>
@@ -35,7 +36,7 @@
 import {taskStore} from "@/stores/taskStore";
 import {useRoute, useRouter} from "vue-router";
 import {getGroupedTimeRemaining, useCurrentTime} from "@/utils/task";
-import {computed} from "vue";
+import { computed} from "vue";
 
 const route = useRoute();
 const router = useRouter();
@@ -60,26 +61,13 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Gluten";
+  background-color: #e5f0e8;
 }
 
 .main-container {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-}
-
-.rectangle {
-  flex: 1;
-  width: 100%;
-  max-width: 1500px;
-  padding: 50px 20px;
-  background: #e5f0e8;
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
 }
 
 .rectangle h2 {
@@ -102,7 +90,6 @@ body {
   display: inline-block; /* Ensure each tracker is a block element */
   margin: 20px; /* Adjust margin as needed */
 }
-
 
 .inner-circle {
   width: 150px;

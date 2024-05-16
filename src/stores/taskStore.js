@@ -1,6 +1,7 @@
 import {reactive} from "vue";
 import {getAllUserTasks} from "@/controllers/task";
 
+
 export const taskStore = reactive({
     userTasks: [],
     userId: null,
@@ -25,4 +26,28 @@ async function getUserTasks(userId) {
 
     taskStore.setUserTasks(tasks);
 }
+
+/*
+export const taskStore = reactive({
+    userTasks: [],
+    userId: null,
+    async setUserTasks(tasks) {
+        this.userTasks = tasks;
+    },
+    async loadUserTasks() {
+        if (!this.userId) {
+            this.loadUserId();
+        }
+        if (this.userId) {
+            const tasks = await getAllUserTasks(this.userId);
+            this.setUserTasks(tasks);
+        } else {
+            this.userTasks = [];
+        }
+    },
+    loadUserId() {
+        this.userId = localStorage.getItem('userId');
+    },
+});
+*/
 

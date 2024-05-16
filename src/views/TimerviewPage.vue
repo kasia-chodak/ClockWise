@@ -42,10 +42,6 @@ export default {
 
   }
 
-  .detail {
-  flex: 1;
-  min-width: 300px;
-}
   page-footer {
   margin-top: auto;
   }

@@ -62,6 +62,7 @@ export default {
 
 .your-goals {
   margin-right: 10px;
+  font-family: "Gluten";
   font-size: 24px;
   font-weight: bold;
   color: #000000;
@@ -85,6 +86,7 @@ ul {
 
 li {
   background: #C7DECE;
+  font-family: "Gluten";
   margin-bottom: 5px;
   padding: 10px;
   border-radius: 5px;
