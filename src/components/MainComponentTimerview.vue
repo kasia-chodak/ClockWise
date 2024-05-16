@@ -88,8 +88,17 @@ body {
 
 .main-container {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   min-height: 100vh;
+}
+
+.rectangle{
+  max-width: 2000px;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  text-align: center;
 }
 
 .rectangle h2 {
@@ -100,7 +109,7 @@ body {
 }
 
 .timers {
-  margin: 30px 0;
+  margin: 40px 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -109,8 +118,8 @@ body {
 }
 
 .circle {
-  display: inline-block; /* Ensure each tracker is a block element */
-  margin: 20px; /* Adjust margin as needed */
+  display: inline-block;  
+  margin: 20px; 
 }
 
 .inner-circle {
@@ -132,6 +141,7 @@ body {
   font-family: "Gluten";
 }
 
+
 .controls {
   display: flex;
   justify-content: center;
@@ -150,6 +160,7 @@ body {
   width: 60px; 
 }
 
+
 .back-button {
   border-radius: 30px;
   background-color: #4d6a5f;
@@ -162,5 +173,6 @@ body {
   display: inline-block;
   margin-top: 20px;
 }
+
 
 </style>
