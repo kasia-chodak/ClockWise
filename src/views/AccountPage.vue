@@ -33,6 +33,7 @@
     </div>
     <PageFooter />
   </div>
+
 </template>
 
 <script>
@@ -40,6 +41,7 @@ import PageTopPart from '@/components/PageTopPart.vue';
 import PageFooter from '@/components/PageFooter.vue';
 import {taskStore} from "@/stores/taskStore";
 import {computed} from "vue";
+
 
 export default {
     components: {
@@ -56,6 +58,7 @@ export default {
     return {
       trackers: taskStore.userTasks,
       statsPath: computed(() => `/${taskStore.userId}/statistics`)
+
     }
   },
     methods: {

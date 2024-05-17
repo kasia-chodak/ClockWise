@@ -4,6 +4,7 @@ import {getAllUserTasks, getUserCompletionStatistics} from "@/controllers/task";
 export const taskStore = reactive({
     userTasks: [],
     statistics: {onTimeCount: 0, lateCount: 0, notFinishedCount: 0, totalCount: 0, valid: false},
+
     userId: null,
     setUserTasks(tasks) {
         this.userTasks = tasks;

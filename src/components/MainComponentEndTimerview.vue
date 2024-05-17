@@ -25,6 +25,7 @@
   
 <script setup>
 
+
   import {finishTask} from "@/controllers/task";
   import {taskStore} from "@/stores/taskStore";
   import {useRoute, useRouter} from "vue-router";
@@ -346,5 +347,6 @@
   }
   
 </style>
+
   
   
