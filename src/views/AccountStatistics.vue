@@ -6,30 +6,83 @@
             <h2>Your Statistics</h2>
             <div class="trackers-statistics-container">
                 <div class="white-box">
-                    <!-- content -->
+                  <canvas ref="chartRef" width="400" height="400"></canvas>
                 </div>
             </div>
         </div>
-        <PageFooter />
         <div class="back-button-container">
-            <router-link to="/account" class="cta-button back-button">Back</router-link>
+          <router-link :to="backAddress" class="cta-button back-button">Back</router-link>
         </div>
+      <PageFooter />
     </div>
 </template>
 
 <script>
 import PageTopPart from '@/components/PageTopPart.vue';
 import PageFooter from '@/components/PageFooter.vue';
+import Chart from 'chart.js/auto';
+import {taskStore, useUpdateDatabase} from "@/stores/taskStore";
+import {computed, ref} from "vue";
 
 export default {
     components: {
         PageTopPart,
         PageFooter
     },
-    data() {
-        return {};
-    },
-    methods: {}
+  setup() {
+
+      const chartRef = ref(null);
+      let chart = null;
+      const renderChart = () => {
+      const data = {
+        labels: ['Completed on Time', 'Completed Late', 'Not Completed'],
+        datasets: [{
+          label: 'Number of tasks',
+          data: [taskStore.statistics.onTimeCount, taskStore.statistics.lateCount, taskStore.statistics.notFinishedCount],
+          backgroundColor: [
+            'rgba(134,178,99,0.8)',
+            'rgba(255, 205, 86, 0.8)',
+            'rgba(255, 99, 132, 0.8)'
+          ],
+          borderColor: [
+            'rgba(134,178,99,0.8)',
+            'rgba(255, 205, 86, 1)',
+            'rgba(255, 99, 132, 1)'
+          ],
+          borderWidth: 1
+        }]
+      };
+
+      const options = {
+        responsive: true,
+        maintainAspectRatio: false,
+        title: {
+          display: true,
+          text: 'Task Completion Statistics'
+        }
+      };
+
+      const ctx = chartRef.value?.getContext('2d');
+
+      if (chart) {
+        chart.destroy();
+      }
+
+      chart = new Chart(ctx, {
+        type: 'pie',
+        data: data,
+        options: options
+      });
+    }
+
+    useUpdateDatabase(() => renderChart());
+    return {
+      chart,
+      backAddress: computed(() => `/${taskStore.userId}/account`),
+      chartRef
+    }
+  },
+
 }
 </script>
 

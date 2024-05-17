@@ -4,13 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "vue-cli-service serve",
-    "server": "node /src/backend/server.js",
+    "server": "node src/backend/server.js",
     "serve": "vue-cli-service serve --host localhost",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "@vuepic/vue-datepicker": "^8.6.0",
+    "chart.js": "^4.4.2",
     "core-js": "^3.8.3",
     "cors": "^2.8.5",
     "date-fns": "^3.6.0",

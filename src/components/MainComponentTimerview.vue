@@ -2,7 +2,7 @@
   <div class="main-container">
     <div class="rectangle">
       <span class="time-remaining"
-        >Time remaining to call the client to discuss the new project</span>
+        >{{taskStore.viewedTask && taskStore.viewedTask.tsk_name}}</span>
       <div class="timers">
         <div class="ellipse1"></div>
         <div class="ellipse2"></div>
@@ -26,7 +26,7 @@
 </template>
 
 <script setup>
-import {taskStore} from "@/stores/taskStore";
+import {taskStore, useUpdateDatabase} from "@/stores/taskStore";
 import {useRoute, useRouter} from "vue-router";
 import {getGroupedTimeRemaining, useCurrentTime} from "@/utils/task";
 import {computed} from "vue";
@@ -36,13 +36,15 @@ const router = useRouter();
 
 const currentTime = useCurrentTime();
 
-const task = taskStore.userTasks.find(t => t.tsk_id === parseInt(route.params.timer_id, 10))
+useUpdateDatabase(() => {
+  taskStore.setViewedTask(parseInt(route.params.timer_id, 10))
+});
 
 
-const groupedTime = computed(() => getGroupedTimeRemaining(task, currentTime.value))
+const groupedTime = computed(() => getGroupedTimeRemaining(taskStore.viewedTask, currentTime.value))
 
 const finishTimer = async () => {
-  router.push(`/${task.tsk_id}/end`)
+  router.push(`/${taskStore.viewedTask.tsk_id}/end`)
 }
 
 </script>
@@ -50,7 +52,7 @@ const finishTimer = async () => {
 <style>
 
 body {
-  margin: 0px;
+  margin: 0;
   width: 100%;
   height: 100%;
 }

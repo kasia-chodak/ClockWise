@@ -2,8 +2,8 @@
     <div class="main-container">
       <div class="rectangle">
         <span class="time-remaining"
-          >Time remaining to call the client to discuss the new project</span>
-          ><span class="completed-goal">HAVE YOU COMPLETED YOUR GOAL?</span>
+          >{{taskStore.viewedTask && taskStore.viewedTask.tsk_name}}</span>
+          <span class="completed-goal">HAVE YOU COMPLETED YOUR GOAL?</span>
         <div class="timers">
           <div class="ellipse1"></div>
           <div class="ellipse2"></div>
@@ -14,16 +14,17 @@
         ><span class="flex-row-9">{{ groupedTime.seconds }}</span>
         </div>
         <div class="flex-row-a">
-          <span class="days">Days</span><span class="seconds">Seconds</span
-          ><span class="hours">Hours</span><span class="minutes">Minutes</span>
+          <span class="days">Days</span><span class="seconds">Seconds</span>
+          <span class="hours">Hours</span><span class="minutes">Minutes</span>
           <button class="button" @click="onTaskFinish">YES</button>
           <button class="button" @click="onCancel">NO</button>
         </div>
       </div>
     </div>
-  </template>
+</template>
   
-  <script setup>
+<script setup>
+
 
   import {finishTask} from "@/controllers/task";
   import {taskStore} from "@/stores/taskStore";
@@ -36,7 +37,8 @@
   const router = useRouter();
   const onTaskFinish = async () => {
     await finishTask(task.tsk_id, taskStore.userId, new Date());
-    router.push('/')
+    await taskStore.loadUserTasks();
+    router.push(`/success`)
   }
 
   const onCancel = () => {
@@ -47,13 +49,10 @@
 
   const task = taskStore.userTasks.find(t => t.tsk_id === parseInt(route.params.timer_id, 10))
 
-
   const groupedTime = computed(() => getGroupedTimeRemaining(task, currentTime.value))
-
-
-  </script>
+</script>
   
-  <style>
+<style>
   
   .main-container {
     position: relative;
@@ -347,6 +346,7 @@
     margin: 50px;
   }
   
-  </style>
+</style>
+
   
   

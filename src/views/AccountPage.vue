@@ -1,45 +1,47 @@
 <template>
-    <div class="account-page">
-        <PageTopPart />
-        <div class="account-container">
-            <img src="../assets/signup.png" alt="Sign up image" class="signup-image">
-            <h2>Your account</h2>
-            <p class="username-text">{{ username }}</p> <!-- Display the username -->
-            <div class="trackers-statistics-container">
-                <div class="white-box">
-                    <p class="box-title">Your trackers</p>
-                    <div class="trackers-layout">
-                        <!-- Sample tracker items -->
-                        <div class="tracker-item" v-for="tracker in trackers" :key="tracker.tsk_id" :id="tracker.tsk_id" @click="seeTracker(tracker.tsk_id)" style="cursor:pointer;">
-                            <p>{{tracker.tsk_name}}</p>
-                            <!-- Add more elements or data related to Tracker 1 -->
-                        </div>
-                        <!-- Add more tracker items as needed -->
-                        <button @click="goToCreateTrackerPage" class="create-tracker-button">
-                        Create New Tracker
-                        </button>
-                    </div>
-                </div>
-                <div class="white-box">
-                    <p class="box-title">Your statistics</p>
-                    <!-- statistics layout -->
-                    <div class="statistics-link-container">
-                        <router-link to="/statistics" class="cta-button view-statistics-button">View Statistics</router-link>
-                    </div>
-                </div>
+  <div class="account-page">
+    <PageTopPart />
+    <div class="account-container">
+      <img src="../assets/signup.png" alt="Sign up image" class="signup-image">
+      <h2>Your account</h2>
+      <p class="username-text">{{ username }}</p> <!-- Display the username -->
+      <div class="trackers-statistics-container">
+        <div class="white-box">
+          <p class="box-title">Your trackers</p>
+          <div class="trackers-layout">
+            <div class="tracker-item" v-for="tracker in trackers" :key="tracker.tsk_id" :id="tracker.tsk_id" @click="seeTracker(tracker.tsk_id)" style="cursor:pointer;">
+              <p>{{tracker.tsk_name}}</p>
             </div>
-            <div class="button-container">
-                <button type="submit" class="cta-button">Show All Trackers</button>
-            </div>
+            <button @click="goToCreateTrackerPage" class="create-tracker-button">
+              Create New Tracker
+            </button>
+          </div>
         </div>
-        <PageFooter />
+        <div class="white-box">
+          <p class="box-title">Your statistics</p>
+          <!-- statistics layout -->
+          <div class="statistics-link-container">
+            <router-link :to="statsPath" class="cta-button view-statistics-button">View Statistics</router-link>
+            <!-- zmiana - button 'view statistics' przekiwrowuje do AccountStatistics page -->
+          </div>
+        </div>
+      </div>
+      <div class="button-container">
+        <router-link to="/all_timers" class="cta-button">Show All Trackers</router-link>
+        <!-- zmiana - button przekiwrowuje do alltimersview page -->
+      </div>
     </div>
+    <PageFooter />
+  </div>
+
 </template>
 
 <script>
 import PageTopPart from '@/components/PageTopPart.vue';
 import PageFooter from '@/components/PageFooter.vue';
 import {taskStore} from "@/stores/taskStore";
+import {computed} from "vue";
+
 
 export default {
     components: {
@@ -54,7 +56,9 @@ export default {
     },
   setup() {
     return {
-      trackers: taskStore.userTasks
+      trackers: taskStore.userTasks,
+      statsPath: computed(() => `/${taskStore.userId}/statistics`)
+
     }
   },
     methods: {

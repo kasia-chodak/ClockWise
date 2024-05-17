@@ -59,5 +59,5 @@ export async function getUserCompletionStatistics(userId) {
     }
 
     const data = await response.json();
-    return data;
+    return data.result;
 }

@@ -9,7 +9,8 @@
         <!-- Wyświetlanie zdjęć kotów -->
         <img v-for="(cat, index) in catImages" :key="index" :src="cat.url" alt="Kot" width="629" height="485">
       </div>
-      <a href="/AllTimersView" class="button">Make a new clock</a>
+      <router-link to="/start_timer" class="button">Make a new clock</router-link>
+      <router-link :to="`/${userId}/account`" class="back-button">Back to My Account</router-link>
     </div>
   </div>
   </body>
@@ -17,8 +18,12 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
+import { useRoute } from 'vue-router';
 
 const catImages = ref([]);
+const route = useRoute();
+const userId = ref(route.params.user_id);
+
 
 onMounted(async () => {
   try {
@@ -45,7 +50,7 @@ body {
   width: 80%;
   height: 100%;
   margin: 76px auto auto;
-  padding-top: 25px;
+  padding-top: 10%;
 }
 
 .text_and_images {
@@ -53,7 +58,8 @@ body {
 }
 
 .intro_header {
-  font-family: "gluten thin", sans-serif;
+  font-family: "Gluten";
+  font-weight: 100;
   font-size: 42px;
 }
 
@@ -73,18 +79,33 @@ body {
 }
 
 .button {
+  border-radius: 60px;
+  background-color: #4d6a5f;
+  color: #fff;
+  padding: 25px 25px;
+  font: 500 25px Gluten, "Courier New", sans-serif;
+  border: none;
+  cursor: pointer;
   display: inline-block;
-  width: 322px;
-  height: 83px;
-  border-radius: 30px;
-  background-color: #4D6A5F;
-  color: #FFFFFF;
-  font-family: "gluten medium", sans-serif;
-  font-size: 24px;
-  text-align: center;
-  line-height: 83px;
+  margin: 10px;
   text-decoration: none;
   position: relative; /* Ustaw przycisk na pozycję względną */
   z-index: 2; /* Ustaw z-index na wartość większą niż tło .main_body */
 }
+
+.back-button {
+  border-radius: 60px;
+  background-color: #4d6a5f;
+  color: #fff;
+  padding: 25px 25px;
+  font: 500 25px Gluten, "Courier New", sans-serif;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  margin: 10px;
+  text-decoration: none;
+  position: relative; /* Ustaw przycisk na pozycję względną */
+  z-index: 2; /* Ustaw z-index na wartość większą niż tło .main_body */
+}
+
 </style>

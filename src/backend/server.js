@@ -102,32 +102,32 @@ app.get('/api/tasks/:userId', async (req, res) => {
     })
 })
 
-app.get('api/tasks/:userId/statistics', async (req, res) => {
+app.get('/api/tasks/:userId/statistics', async (req, res) => {
     const {userId} = req.params;
 
     db.get(`
         WITH FinishedOnTime AS (
-            SELECT COUNT(*) AS on_time_count
+            SELECT COUNT(*) AS onTimeCount
             FROM Tasks
             WHERE tsk_finish_date IS NOT NULL
               AND tsk_execution_date >= tsk_finish_date
               AND tsk_user_id = ?
         ),
              FinishedLate AS (
-                 SELECT COUNT(*) AS late_count
+                 SELECT COUNT(*) AS lateCount
                  FROM Tasks
                  WHERE tsk_finish_date IS NOT NULL
                    AND tsk_execution_date < tsk_finish_date
                    AND tsk_user_id = ?
              ),
              NotFinished AS (
-                 SELECT COUNT(*) AS not_finished_count
+                 SELECT COUNT(*) AS notFinishedCount
                  FROM Tasks
                  WHERE tsk_finish_date IS NULL
                    AND tsk_user_id = ?
              ),
              TotalTasks AS (
-                 SELECT COUNT(*) AS total_count
+                 SELECT COUNT(*) AS totalCount
                  FROM Tasks
                  WHERE tsk_user_id = ?
              )
@@ -136,6 +136,7 @@ app.get('api/tasks/:userId/statistics', async (req, res) => {
 
     `, [userId, userId, userId, userId], function (err, result) {
         if (err) {
+            console.error(err)
             res.sendStatus(500);
             console.error('Error getting tasks for user from the db')
             return;

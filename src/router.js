@@ -11,6 +11,7 @@ import AllTimersView from "@/views/AllTimersView.vue";
 import ContinuePage from "@/views/ContinuePage.vue";
 import SuccessPage from "@/views/SuccessPage.vue";
 import FailurePage from "@/views/FailurePage.vue";
+import NotFoundPage from "@/views/NotFoundPage.vue";
 
 export default createRouter({
     history: createWebHistory(),
@@ -64,7 +65,8 @@ export default createRouter({
             component: FailurePage
         },
         {
-            path: '/:pathMatch(.*)*'
+            path: '/:pathMatch(.*)*',
+            component: NotFoundPage
         }
     ]
 })
