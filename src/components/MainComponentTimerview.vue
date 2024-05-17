@@ -26,22 +26,19 @@
 </template>
 
 <script setup>
-import {taskStore} from "@/stores/taskStore";
+import {taskStore, useUpdateDatabase} from "@/stores/taskStore";
 import {useRoute, useRouter} from "vue-router";
 import {getGroupedTimeRemaining, useCurrentTime} from "@/utils/task";
-import {computed, onMounted} from "vue";
+import {computed} from "vue";
 
 const route = useRoute();
 const router = useRouter();
 
 const currentTime = useCurrentTime();
 
-onMounted(() => {
-  taskStore.loadUserTasks().then(() => {
-    taskStore.setViewedTask(parseInt(route.params.timer_id, 10))
-  })
-
-})
+useUpdateDatabase(() => {
+  taskStore.setViewedTask(parseInt(route.params.timer_id, 10))
+});
 
 
 const groupedTime = computed(() => getGroupedTimeRemaining(taskStore.viewedTask, currentTime.value))

@@ -21,7 +21,7 @@
           <p class="box-title">Your statistics</p>
           <!-- statistics layout -->
           <div class="statistics-link-container">
-            <router-link to="/:user_id/statistics" class="cta-button view-statistics-button">View Statistics</router-link>
+            <router-link :to="statsPath" class="cta-button view-statistics-button">View Statistics</router-link>
             <!-- zmiana - button 'view statistics' przekiwrowuje do AccountStatistics page -->
           </div>
         </div>
@@ -39,6 +39,7 @@
 import PageTopPart from '@/components/PageTopPart.vue';
 import PageFooter from '@/components/PageFooter.vue';
 import {taskStore} from "@/stores/taskStore";
+import {computed} from "vue";
 
 export default {
     components: {
@@ -53,7 +54,8 @@ export default {
     },
   setup() {
     return {
-      trackers: taskStore.userTasks
+      trackers: taskStore.userTasks,
+      statsPath: computed(() => `/${taskStore.userId}/statistics`)
     }
   },
     methods: {
